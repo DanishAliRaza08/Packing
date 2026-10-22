@@ -137,3 +137,32 @@
   {{ field_error(errors, 'consent') }}
 </div>
 {%- endmacro %}
+
+{# Interactive 3D box. Falls back to the static drawing when WebGL isn't available. #}
+{% macro box3d(d, scroll_open=False, open_on_load=False, caption=True, size="") -%}
+<div class="box3d {{ size }}" data-box3d="{{ d.id }}" {% if scroll_open %}data-scroll-open{% endif %} {% if open_on_load %}data-open-on-load{% endif %}>
+  <div class="box3d-stage">
+    <div class="box3d-fallback">{{ photo(d.name, "Custom printed " ~ design_styles[d.style].lower() ~ ": " ~ d.name, "1/1") }}</div>
+    <div class="box3d-loading" aria-hidden="true"><span></span></div>
+    <div class="box3d-ui">
+      <span class="box3d-hint" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Drag to spin
+      </span>
+      <button type="button" class="btn btn-small" data-box-open aria-pressed="false">Open box</button>
+    </div>
+  </div>
+  {% if caption %}
+  <p class="box3d-caption"><strong>{{ d.name }}</strong> · <a href="{{ link('studio', design=d.id) }}">Customise in 3D →</a></p>
+  {% endif %}
+</div>
+{%- endmacro %}
+
+{% macro design_card(d) -%}
+<a class="design-card" href="{{ link('studio', design=d.id) }}" data-thumb-wrap>
+  <span class="design-thumb">
+    <img data-thumb="{{ d.id }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="560" height="420" alt="3D render of the {{ d.name }}">
+  </span>
+  <span class="design-meta"><span class="design-name">{{ d.name }}</span><span class="design-style">{{ design_styles[d.style] }}</span></span>
+</a>
+{%- endmacro %}

@@ -11,6 +11,7 @@ from .content.blog import AUTHOR, POSTS
 from .content.catalog import (FAQ_GROUPS, FINISHES, HOME_FAQ_COUNT, HOW_IT_WORKS,
                               MATERIAL_LABELS, NICHES, PRINT_LABELS, PRODUCTS,
                               STYLE_LABELS, TRUST_POINTS)
+from .designs import PRODUCT_STYLES, STYLES as DESIGN_STYLES, by_niche, by_style, find
 from .mailer import send_email
 from .pages import STATIC_PAGES, all_pages
 from .pricing import EstimateError, estimate, from_price_table, lowest_price
@@ -27,6 +28,23 @@ EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 SOURCES = ["Google search", "Instagram", "LinkedIn", "Etsy or Shopify community", "Referral from a friend", "Other"]
 COLOUR_OPTIONS = ["One colour", "Two colours", "Full colour (CMYK)"]
 QUOTE_STYLES = list(STYLE_LABELS) + ["addons", "not-sure"]
+
+
+def all_designs():
+    return current_app.config["DESIGNS"]
+
+
+def showcase(designs, count):
+    """Pick designs round-robin across styles so a short strip shows variety."""
+    buckets = {}
+    for d in designs:
+        buckets.setdefault(d["style"], []).append(d)
+    picked = []
+    while len(picked) < count and any(buckets.values()):
+        for style in list(buckets):
+            if buckets[style] and len(picked) < count:
+                picked.append(buckets[style].pop(0))
+    return picked
 
 
 def page_meta(endpoint):
@@ -52,10 +70,14 @@ def home():
     niches = [NICHES_BY_SLUG[s] for s in [site["main_niche"]] + site["secondary_niches"] if s in NICHES_BY_SLUG]
     faqs = [q for _, group in FAQ_GROUPS for q in group][:HOME_FAQ_COUNT]
     from_prices = {p["slug"]: lowest_price(p["style"], current_market(), cfg)[0] for p in PRODUCTS if p["style"]}
+    hero = find(all_designs(), site.get("hero_design")) or all_designs()[0]
+    strip = showcase([d for d in all_designs() if d["id"] != hero["id"]], 12)
     return render_template(
         "home.html", meta=page_meta("home"), niche=main_niche(), niches=niches,
         products=PRODUCTS, from_prices=from_prices, steps=HOW_IT_WORKS,
-        trust=TRUST_POINTS, faqs=faqs,
+        trust=TRUST_POINTS, faqs=faqs, hero_design=hero, strip=strip,
+        product_designs={slug: by_style(all_designs(), styles)[0] for slug, styles in PRODUCT_STYLES.items()},
+        designs3d=list({d["id"]: d for d in [hero] + strip + [by_style(all_designs(), s)[0] for s in PRODUCT_STYLES.values()]}.values()),
     )
 
 
@@ -68,8 +90,10 @@ def product(slug):
     table = from_price_table(p["style"], current_market(), cfg) if p["style"] else []
     materials = [(k, MATERIAL_LABELS[k]) for k in cfg["styles"][p["style"]]["materials"]] if p["style"] else []
     price_range = lowest_price(p["style"], current_market(), cfg) if p["style"] else None
+    designs = by_style(all_designs(), PRODUCT_STYLES.get(slug, ["mailer"]))
     return render_template(
-        "product.html", p=p, table=table, materials=materials, finishes=FINISHES,
+        "product.html", p=p, designs=designs[:8], featured=designs[0], designs3d=designs[:8],
+        studio_style=PRODUCT_STYLES.get(slug, ["mailer"])[0], table=table, materials=materials, finishes=FINISHES,
         price_range=price_range, niches=[NICHES_BY_SLUG[s] for s in p["niches"]],
         others=[o for o in PRODUCTS if o["slug"] != slug],
         meta={"title": localise(p["title"]), "description": localise(p["description"])},
@@ -83,11 +107,23 @@ def niche(slug):
     if not n:
         abort(404)
     styles = [(PRODUCTS_BY_SLUG[s], why) for s, why in n["styles"]]
+    designs = by_niche(all_designs(), slug) or all_designs()[:8]
     return render_template(
-        "niche.html", n=n, styles=styles,
+        "niche.html", n=n, styles=styles, designs=designs[:8], featured=designs[0], designs3d=designs[:8],
         others=[o for o in NICHES if o["slug"] != slug],
         meta={"title": localise(n["title"]), "description": localise(n["description"])},
         crumbs=breadcrumbs((f"Packaging for {n['short'].lower()}", None)),
+    )
+
+
+@bp.route("/box-studio/")
+def studio():
+    designs = all_designs()
+    niches = [n for n in NICHES if by_niche(designs, n["slug"])]
+    return render_template(
+        "studio.html", meta=page_meta("studio"), designs=designs, designs3d=designs,
+        niches=niches, styles=DESIGN_STYLES, initial=current_app.config["SITE"].get("hero_design") or designs[0]["id"],
+        crumbs=breadcrumbs(("3D Box Studio", None)),
     )
 
 
@@ -263,7 +299,7 @@ def quote():
             material=_clean("material", 30), print_sides=_clean("print_sides", 20),
             colours=_clean("colours", 40), finishes=", ".join(finishes),
             design_help=1 if request.form.get("design_help") == "yes" else 0,
-            deadline=_clean("deadline", 20),
+            deadline=_clean("deadline", 20), design=_clean("design", 400),
         )
         if not errors:
             try:

@@ -10,7 +10,7 @@
       {% for label, key in [('Received', 'created_at'), ('Name', 'name'), ('Company', 'company'), ('Email', 'email'), ('Phone', 'phone'),
                             ('Country', 'country'), ('Postcode', 'postcode'), ('Box style', 'style'), ('Length', 'length'), ('Width', 'width'),
                             ('Height', 'height'), ('Unit', 'unit'), ('Quantity', 'quantity'), ('Material', 'material'), ('Print sides', 'print_sides'),
-                            ('Colours', 'colours'), ('Finishes', 'finishes'), ('Deadline', 'deadline'), ('Heard about us', 'source')] %}
+                            ('Colours', 'colours'), ('Finishes', 'finishes'), ('3D design', 'design'), ('Deadline', 'deadline'), ('Heard about us', 'source')] %}
         {% if q[key] not in (None, '') %}<dt>{{ label }}</dt><dd>{{ q[key] }}</dd>{% endif %}
       {% endfor %}
       <dt>Design help</dt><dd>{{ 'Yes' if q.design_help else 'No' }}</dd>

@@ -2,18 +2,18 @@
 {% import "partials/macros.html" as ui with context %}
 
 {% block content %}
-<section class="page-hero">
+<section class="page-hero" data-hero>
   <div class="container hero-grid">
     <div>
-      <p class="eyebrow">Packaging for {{ n.name }}</p>
-      <h1>{{ n.keyword | m }}</h1>
+      <p class="eyebrow" data-hero-item>Packaging for {{ n.name }}</p>
+      <h1 data-hero-item>{{ n.keyword | m }}</h1>
       <p class="lead">{{ n.hero }}. From {{ site.min_units }} boxes, with a free 3D mockup in {{ site.mockup_hours }} hours.</p>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" href="{{ link('quote') }}">Get a free quote</a>
         <a class="btn btn-ghost btn-lg" href="{{ link('pricing') }}">Estimate a price</a>
       </div>
     </div>
-    {{ ui.photo(n.short.lower() ~ " packaging example", "Custom " ~ n.short.lower() ~ " box", "5/4") }}
+    {{ ui.box3d(featured) }}
   </div>
 </section>
 
@@ -60,9 +60,20 @@
   </div>
 </section>
 
+<section class="section design-strip">
+  <div class="container">
+    <div class="section-head split-head" data-reveal>
+      <div><h2>{{ n.short }} designs in 3D</h2><p>Ideas made for {{ n.name }}. Open one in the studio and make it yours.</p></div>
+      <a class="btn btn-secondary" href="{{ link('studio', niche=n.slug) }}">See all in 3D</a>
+    </div>
+    <div class="design-grid" data-reveal data-reveal-children>{% for d in designs %}{{ ui.design_card(d) }}{% endfor %}</div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container">
     <h2>Gallery</h2>
+    <p class="muted">Add photos of real orders here as you complete them.</p>
     <div class="gallery">
       {% for i in range(4) %}{{ ui.photo(n.short.lower() ~ " box photo " ~ loop.index, n.short ~ " packaging example " ~ loop.index, "1/1") }}{% endfor %}
     </div>

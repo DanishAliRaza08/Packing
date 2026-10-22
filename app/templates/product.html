@@ -15,18 +15,28 @@
 {% endblock %}
 
 {% block content %}
-<section class="page-hero">
+<section class="page-hero" data-hero>
   <div class="container hero-grid">
     <div>
-      <h1>{{ p.name | m }}</h1>
-      <p class="lead">{{ p.lead | m }}</p>
+      <h1 data-hero-item>{{ p.name | m }}</h1>
+      <p class="lead" data-hero-item>{{ p.lead | m }}</p>
       {% if price_range %}<p class="price-from">From {{ money(price_range[0]) }} per box at volume · minimum {{ pricing_cfg.styles[p.style].min_qty }} boxes</p>{% endif %}
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" href="{{ link('quote', style=p.style or 'addons') }}">Get a free quote</a>
         {% if p.style %}<a class="btn btn-ghost btn-lg" href="{{ link('pricing', style=p.style) }}">Estimate a price</a>{% endif %}
       </div>
     </div>
-    {{ ui.photo((p.name | m) ~ ", printed, front and open", (p.name | m) ~ " printed with a brand logo", "5/4") }}
+    {{ ui.box3d(featured) }}
+  </div>
+</section>
+
+<section class="section design-strip">
+  <div class="container">
+    <div class="section-head split-head" data-reveal>
+      <div><h2>{{ designs | length }} designs in this style</h2><p>Open any of them in the 3D studio and change the {{ t.colours }}, size and logo.</p></div>
+      <a class="btn btn-secondary" href="{{ link('studio', style=studio_style) }}">See all in 3D</a>
+    </div>
+    <div class="design-grid" data-reveal data-reveal-children>{% for d in designs %}{{ ui.design_card(d) }}{% endfor %}</div>
   </div>
 </section>
 

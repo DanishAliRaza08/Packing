@@ -11,6 +11,7 @@ from markupsafe import Markup, escape
 from . import db
 from .config import Config
 from .content.catalog import LOCALE, NICHES, PRODUCTS
+from .designs import STYLES as DESIGN_STYLES, load_designs
 from .pricing import CM_PER_INCH, load_pricing
 from .security import HONEYPOT_FIELD, csrf_token
 
@@ -32,6 +33,7 @@ def create_app(overrides=None):
 
     app.config["SITE"] = load_site()
     app.config["PRICING"] = load_pricing()
+    app.config["DESIGNS"] = load_designs()
     db.init_db(app)
 
     from .views import bp as site_bp
@@ -142,6 +144,8 @@ def register_template_helpers(app):
             ]
 
         return {
+            "design_count": len(app.config["DESIGNS"]),
+            "design_styles": DESIGN_STYLES,
             "faq_ld": faq_ld,
             "switch_url": switch_url,
             "crumbs_ld": crumbs_ld,

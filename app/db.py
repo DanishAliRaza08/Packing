@@ -16,7 +16,7 @@ FIELDS = [
     "material", "print_sides", "colours", "finishes", "design_help",
     "artwork_name", "artwork_file", "name", "company", "email", "phone",
     "country", "postcode", "deadline", "source", "message",
-    "estimate_low", "estimate_high", "currency", "ip",
+    "estimate_low", "estimate_high", "currency", "ip", "design",
 ]
 
 SCHEMA = """
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS quotes (
     name TEXT NOT NULL, company TEXT, email TEXT NOT NULL, phone TEXT,
     country TEXT, postcode TEXT, deadline TEXT, source TEXT, message TEXT,
     estimate_low REAL, estimate_high REAL, currency TEXT,
-    notes TEXT DEFAULT '', ip TEXT
+    notes TEXT DEFAULT '', ip TEXT, design TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_quotes_status ON quotes(status);
 """
@@ -54,7 +54,13 @@ def close_db(_exc=None):
 
 def init_db(app):
     with app.app_context():
-        get_db().executescript(SCHEMA)
+        db = get_db()
+        db.executescript(SCHEMA)
+        # Add columns introduced after a database was first created.
+        existing = {row["name"] for row in db.execute("PRAGMA table_info(quotes)")}
+        if "design" not in existing:
+            db.execute("ALTER TABLE quotes ADD COLUMN design TEXT")
+            db.commit()
     app.teardown_appcontext(close_db)
 
 

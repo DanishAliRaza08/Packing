@@ -10,6 +10,10 @@ STATIC_PAGES = {
         {"us": "Custom printed candle boxes and mailer boxes from 100 units. Free 3D mockup in 24 hours, samples first, delivered with duties included.",
          "uk": "Custom printed candle boxes and postal boxes from 100 units. Recyclable, free 3D mockup in 24 hours, delivered with duties included."},
     ),
+    "studio": (
+        "3D Box Studio: 40+ Custom Box Designs",
+        "Spin, open and customise 40+ custom box designs in 3D. Add your brand name or logo, change colours and sizes, then get a quote.",
+    ),
     "pricing": (
         {"us": "Custom Box Prices: Instant Estimator", "uk": "Custom Box Prices UK: Instant Estimator"},
         "Estimate the price of custom printed boxes in seconds. Pick a style, size, material and quantity for a price range per box and in total.",

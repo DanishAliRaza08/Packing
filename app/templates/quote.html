@@ -26,6 +26,15 @@
 
       <fieldset class="form-step" data-step="1">
         <legend><span class="step-label">Step 1 of 3</span> Your box</legend>
+        {% if form.get('design') %}
+        <div class="design-chosen">
+          <p><strong>Your 3D design:</strong> {{ form.get('design') }}</p>
+          <input type="hidden" name="design" value="{{ form.get('design') }}">
+          <a href="{{ link('studio') }}">Change design</a>
+        </div>
+        {% else %}
+        <p class="note">Want to see it first? <a href="{{ link('studio') }}">Design your box in 3D</a> and send it with your quote.</p>
+        {% endif %}
         <div class="field">
           <label for="style">Box style <span class="req" aria-hidden="true">*</span></label>
           {% set s = form.get('style', '') %}

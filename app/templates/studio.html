@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+{% set unit = pricing_cfg.markets[market].unit %}
+{% set swatches = [("Kraft", "#c8a27a"), ("White", "#f6f3ee"), ("Black", "#1e1e20"), ("Navy", "#1f2a4d"), ("Forest", "#2f4a3a"), ("Blush", "#f3d9d4"), ("Mustard", "#f2c14e"), ("Brick", "#9c3b2f")] %}
+
+{% block content %}
+<div data-studio data-unit="{{ unit }}" data-initial="{{ initial }}" data-quote-url="{{ link('quote') }}">
+
+<section class="page-hero compact" data-hero>
+  <div class="container">
+    <p class="eyebrow" data-hero-item>3D Box Studio</p>
+    <h1 data-hero-item>Design your box in 3D</h1>
+    <p class="lead" data-hero-item>Choose one of {{ design_count }} designs, then make it yours: drag to spin it, open the lid, change the {{ t.colours }} and size, and add your brand name or logo.</p>
+  </div>
+</section>
+
+<section class="section studio-section" aria-label="3D designer">
+  <div class="container studio-grid">
+    <div class="studio-viewer">
+      <div class="studio-stage">
+        <noscript><p class="studio-message">Turn on JavaScript to use the 3D studio. You can still browse the designs below.</p></noscript>
+        <p class="studio-message no-webgl-only">Your browser can't show 3D graphics. You can still browse the designs below and request a quote.</p>
+        <div class="box3d-loading" aria-hidden="true"><span></span></div>
+      </div>
+      <div class="studio-toolbar" role="toolbar" aria-label="Viewer controls">
+        <button type="button" class="btn btn-primary" id="studio-open" aria-pressed="false">Open box</button>
+        <button type="button" class="btn btn-ghost" id="studio-rotate" aria-pressed="true">Auto-spin</button>
+        <button type="button" class="btn btn-ghost" id="studio-reset-view">Reset view</button>
+        <button type="button" class="btn btn-ghost" id="studio-download">Download image</button>
+        <button type="button" class="btn btn-ghost" id="studio-share">Copy link</button>
+        <span id="studio-status" class="muted" role="status"></span>
+      </div>
+      <p class="note">Drag to spin · scroll or pinch to zoom. Colours on screen are a guide; your printed sample shows the real result.</p>
+    </div>
+
+    <div class="studio-panel card">
+      <div class="card-body">
+        <div class="studio-info">
+          <p class="eyebrow" id="studio-style"></p>
+          <h2 id="studio-name">Loading…</h2>
+          <p id="studio-desc" class="muted"></p>
+        </div>
+
+        <form id="studio-form" class="studio-form">
+          <details open>
+            <summary>Your brand</summary>
+            <div class="field">
+              <label for="s-brand">Brand name on the box</label>
+              <input id="s-brand" name="brand" maxlength="40" autocomplete="organization">
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="s-font">Lettering</label>
+                <select id="s-font" name="font">
+                  <option value="sans">Modern sans</option>
+                  <option value="serif">Classic serif</option>
+                  <option value="script">Elegant italic</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="s-foil">Foil</label>
+                <select id="s-foil" name="foil">
+                  <option value="">No foil (ink)</option>
+                  <option value="gold">Gold foil</option>
+                  <option value="silver">Silver foil</option>
+                  <option value="rose">Rose-gold foil</option>
+                </select>
+              </div>
+            </div>
+            <div class="field color-field">
+              <label for="s-logo-color">Logo {{ t.colour }}</label>
+              <input id="s-logo-color" name="logo_color" type="color">
+            </div>
+            <div class="field">
+              <label for="s-logo-file">Or upload your logo <span class="optional">(PNG, JPG, SVG — stays on your device)</span></label>
+              <input id="s-logo-file" name="logo_file" type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+              <p class="field-error" id="logo-error" hidden></p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>{{ t.Colour }}s and print</summary>
+            <fieldset class="field">
+              <legend>Board {{ t.colour }}</legend>
+              <div class="swatches">
+                {% for name, hex in swatches %}
+                <button type="button" class="swatch" style="--swatch: {{ hex }}" data-swatch="{{ hex }}" data-target="board" aria-label="{{ name }}" title="{{ name }}"></button>
+                {% endfor %}
+                <input name="board" type="color" aria-label="Custom board {{ t.colour }}">
+              </div>
+            </fieldset>
+            <div class="grid-2">
+              <div class="field">
+                <label for="s-pattern">Pattern</label>
+                <select id="s-pattern" name="pattern">
+                  {% for p in ["solid", "stripes", "diagonal", "dots", "grid", "waves", "chevron", "checker", "terrazzo", "botanical", "confetti", "rays", "halftone", "triangles", "marble", "topo", "stars", "scallop"] %}
+                  <option value="{{ p }}">{{ "None (plain)" if p == "solid" else p | capitalize }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="field color-field">
+                <label for="s-pattern-color">Pattern {{ t.colour }}</label>
+                <input id="s-pattern-color" name="pattern_color" type="color">
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="s-finish">Finish</label>
+                <select id="s-finish" name="finish">
+                  <option value="matte">Matte</option>
+                  <option value="soft">Soft-touch</option>
+                  <option value="gloss">Gloss</option>
+                </select>
+              </div>
+              <div class="field color-field">
+                <label for="s-inside">Inside {{ t.colour }}</label>
+                <input id="s-inside" name="inside" type="color">
+              </div>
+            </div>
+            <div class="field checkbox">
+              <input id="s-inside-print" name="inside_print" type="checkbox">
+              <label for="s-inside-print">Print the pattern inside too</label>
+            </div>
+          </details>
+
+          <details open>
+            <summary>Size ({{ 'centimetres' if unit == 'cm' else 'inches' }})</summary>
+            <div class="grid-3">
+              {% for dim in ['length', 'width', 'height'] %}
+              <div class="field">
+                <label for="s-{{ dim }}">{{ dim | capitalize }}</label>
+                <input id="s-{{ dim }}" name="{{ dim }}" type="number" inputmode="decimal" min="{{ 2.5 if unit == 'cm' else 1 }}" max="{{ 76 if unit == 'cm' else 30 }}" step="{{ 0.5 if unit == 'cm' else 0.25 }}">
+              </div>
+              {% endfor %}
+            </div>
+          </details>
+        </form>
+
+        <div class="studio-actions">
+          <a class="btn btn-primary btn-lg btn-block" id="studio-quote" href="{{ link('quote') }}">Get a quote for this design</a>
+          <button type="button" class="btn btn-ghost btn-block" id="studio-reset">Reset to original design</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="designs" aria-labelledby="gallery-title">
+  <div class="container">
+    <div class="section-head split-head">
+      <div>
+        <h2 id="gallery-title">All designs</h2>
+        <p><span id="gallery-count">{{ designs | length }} designs</span>. The brand names are made-up examples; put your own on any design.</p>
+      </div>
+    </div>
+    <div class="filters">
+      <div class="chips" role="group" aria-label="Filter by box style">
+        <button type="button" class="chip" data-filter="style" data-value="" aria-pressed="true">All styles</button>
+        {% for key, label in styles.items() %}<button type="button" class="chip" data-filter="style" data-value="{{ key }}" aria-pressed="false">{{ label }}</button>{% endfor %}
+      </div>
+      <div class="chips" role="group" aria-label="Filter by industry">
+        <button type="button" class="chip" data-filter="niche" data-value="" aria-pressed="true">All industries</button>
+        {% for n in niches %}<button type="button" class="chip" data-filter="niche" data-value="{{ n.slug }}" aria-pressed="false">{{ n.short }}</button>{% endfor %}
+      </div>
+    </div>
+    <ul class="design-grid studio-gallery">
+      {% for d in designs %}
+      <li class="design-card" data-design-card="{{ d.id }}" data-style="{{ d.style }}" data-niches="{{ d.niches | join(' ') }}" data-thumb-wrap>
+        <span class="design-thumb">
+          <img data-thumb="{{ d.id }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="560" height="420" alt="3D render of the {{ d.name }}" loading="lazy">
+        </span>
+        <span class="design-meta">
+          <span class="design-name">{{ d.name }}</span>
+          <span class="design-style">{{ styles[d.style] }} · {{ dims(d.dims) }}</span>
+          <span class="design-desc">{{ d.description }}</span>
+        </span>
+        <button type="button" class="btn btn-small">Customise in 3D</button>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+</div>
+
+{{ ui.cta("Like what you see?", "Send us your favourite design with your logo. You'll get a print-ready mockup and a delivered price within " ~ site.mockup_hours ~ " hours.") }}
+{% endblock %}
+
+{% block scripts %}<script type="module" src="{{ url_for('static', filename='js/studio.js') }}"></script>{% endblock %}

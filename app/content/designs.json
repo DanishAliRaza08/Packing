@@ -1,0 +1,1379 @@
+{
+ "_help": "3D box designs shown in the Box Studio. style: mailer, shipping, tuck, rigid, drawer, magnetic. dims are inside L × W × H in inches. Brand names are made-up examples.",
+ "designs": [
+  {
+   "id": "kraft-classic-mailer",
+   "name": "Kraft Classic Mailer",
+   "style": "mailer",
+   "niches": [
+    "candles",
+    "apparel",
+    "subscription-boxes"
+   ],
+   "dims": [
+    9,
+    6,
+    3
+   ],
+   "board": "#c8a27a",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "FREESTYLE",
+    "color": "#1e1e20",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#d9bf9f",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Natural kraft with a one-colour black logo. The most affordable branded mailer."
+  },
+  {
+   "id": "botanical-candle-mailer",
+   "name": "Botanical Candle Mailer",
+   "style": "mailer",
+   "niches": [
+    "candles"
+   ],
+   "dims": [
+    8,
+    8,
+    4
+   ],
+   "board": "#2f4a3a",
+   "pattern": {
+    "type": "botanical",
+    "color": "#5e8064",
+    "color2": "#3d5d49",
+    "scale": 1
+   },
+   "logo": {
+    "text": "Ember & Oak",
+    "color": "#efe4cf",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#e9dcc3",
+   "insidePrint": true,
+   "finish": "soft",
+   "description": "Deep green with tone-on-tone leaves and a gold foil wordmark, printed inside too."
+  },
+  {
+   "id": "terrazzo-skincare-mailer",
+   "name": "Terrazzo Skincare Mailer",
+   "style": "mailer",
+   "niches": [
+    "skincare"
+   ],
+   "dims": [
+    10,
+    7,
+    3
+   ],
+   "board": "#f1e6dc",
+   "pattern": {
+    "type": "terrazzo",
+    "color": "#d98e73",
+    "color2": "#7f9c8e",
+    "scale": 1
+   },
+   "logo": {
+    "text": "SOLENNE",
+    "color": "#3a2c26",
+    "font": "serif",
+    "foil": null
+   },
+   "inside": "#f7efe8",
+   "insidePrint": true,
+   "finish": "matte",
+   "description": "Soft blush with terrazzo speckles. A favourite for clean-beauty launches."
+  },
+  {
+   "id": "midnight-foil-mailer",
+   "name": "Midnight Foil Mailer",
+   "style": "mailer",
+   "niches": [
+    "candles",
+    "skincare"
+   ],
+   "dims": [
+    9,
+    6,
+    3
+   ],
+   "board": "#1e1e20",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "NOIR",
+    "color": "#000000",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#d4af6a",
+   "insidePrint": false,
+   "finish": "soft",
+   "description": "Matte black with a gold foil logo and a gold-printed interior."
+  },
+  {
+   "id": "sunset-stripes-mailer",
+   "name": "Sunset Stripes Mailer",
+   "style": "mailer",
+   "niches": [
+    "apparel",
+    "subscription-boxes"
+   ],
+   "dims": [
+    12,
+    9,
+    4
+   ],
+   "board": "#f6e3c8",
+   "pattern": {
+    "type": "stripes",
+    "color": "#e4572e",
+    "color2": "#f2a541",
+    "scale": 1
+   },
+   "logo": {
+    "text": "SUNDAY CLUB",
+    "color": "#1e1e20",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#e4572e",
+   "insidePrint": true,
+   "finish": "matte",
+   "description": "Bold warm stripes for a brand that wants to be noticed on the doorstep."
+  },
+  {
+   "id": "confetti-party-mailer",
+   "name": "Confetti Party Mailer",
+   "style": "mailer",
+   "niches": [
+    "subscription-boxes"
+   ],
+   "dims": [
+    10,
+    8,
+    4
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "confetti",
+    "color": "#e4572e",
+    "color2": "#3a86ff",
+    "scale": 1
+   },
+   "logo": {
+    "text": "YAY BOX",
+    "color": "#1e1e20",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#ffd6c9",
+   "insidePrint": true,
+   "finish": "gloss",
+   "description": "Playful confetti on white with a gloss finish. Perfect for gift and party subscriptions."
+  },
+  {
+   "id": "wave-coffee-mailer",
+   "name": "Wave Coffee Mailer",
+   "style": "mailer",
+   "niches": [
+    "coffee"
+   ],
+   "dims": [
+    7,
+    4,
+    2.5
+   ],
+   "board": "#e9dccb",
+   "pattern": {
+    "type": "waves",
+    "color": "#6b4226",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "DRIFT ROASTERS",
+    "color": "#3b2314",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#6b4226",
+   "insidePrint": true,
+   "finish": "matte",
+   "description": "Hand-drawn style waves in espresso brown. Sized for one bag of beans."
+  },
+  {
+   "id": "checker-streetwear-mailer",
+   "name": "Checker Streetwear Mailer",
+   "style": "mailer",
+   "niches": [
+    "apparel"
+   ],
+   "dims": [
+    12,
+    10,
+    4
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "checker",
+    "color": "#1e1e20",
+    "color2": null,
+    "scale": 1.4
+   },
+   "logo": {
+    "text": "KERB",
+    "color": "#e4572e",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#1e1e20",
+   "insidePrint": true,
+   "finish": "matte",
+   "description": "Black and white checker for streetwear drops, with a black interior."
+  },
+  {
+   "id": "halftone-pop-mailer",
+   "name": "Halftone Pop Mailer",
+   "style": "mailer",
+   "niches": [
+    "apparel",
+    "subscription-boxes"
+   ],
+   "dims": [
+    10,
+    8,
+    3
+   ],
+   "board": "#ffd23f",
+   "pattern": {
+    "type": "halftone",
+    "color": "#e4572e",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "POP SHOP",
+    "color": "#1e1e20",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#1e1e20",
+   "insidePrint": true,
+   "finish": "gloss",
+   "description": "Comic-style halftone dots in yellow and red."
+  },
+  {
+   "id": "minimal-white-mailer",
+   "name": "Minimal White Mailer",
+   "style": "mailer",
+   "niches": [
+    "skincare",
+    "apparel"
+   ],
+   "dims": [
+    9,
+    6,
+    3
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "atelier",
+    "color": "#1e1e20",
+    "font": "serif",
+    "foil": null
+   },
+   "inside": "#ececec",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Clean white with a small centred wordmark. Quiet luxury on a budget."
+  },
+  {
+   "id": "rose-foil-mailer",
+   "name": "Rose Foil Mailer",
+   "style": "mailer",
+   "niches": [
+    "skincare",
+    "candles"
+   ],
+   "dims": [
+    8,
+    6,
+    3
+   ],
+   "board": "#f3d9d4",
+   "pattern": {
+    "type": "scallop",
+    "color": "#ecc3bb",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "Bloom",
+    "color": "#b5655b",
+    "font": "script",
+    "foil": "rose"
+   },
+   "inside": "#fff4f1",
+   "insidePrint": true,
+   "finish": "soft",
+   "description": "Blush pink with a scalloped pattern and rose-gold foil script logo."
+  },
+  {
+   "id": "kraft-stamp-mailer",
+   "name": "Kraft Stamp Mailer",
+   "style": "mailer",
+   "niches": [
+    "coffee",
+    "candles"
+   ],
+   "dims": [
+    9,
+    6,
+    3
+   ],
+   "board": "#c8a27a",
+   "pattern": {
+    "type": "grid",
+    "color": "#a37b52",
+    "color2": null,
+    "scale": 1.2
+   },
+   "logo": {
+    "text": "HOMESTEAD",
+    "color": "#2c4a3a",
+    "font": "serif",
+    "foil": null
+   },
+   "inside": "#d9bf9f",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Kraft with a fine printed grid and a forest-green stamp-style logo."
+  },
+  {
+   "id": "star-gift-mailer",
+   "name": "Starry Gift Mailer",
+   "style": "mailer",
+   "niches": [
+    "subscription-boxes",
+    "candles"
+   ],
+   "dims": [
+    10,
+    8,
+    4
+   ],
+   "board": "#1f2a4d",
+   "pattern": {
+    "type": "stars",
+    "color": "#f2d16b",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "Night Sky",
+    "color": "#f2d16b",
+    "font": "script",
+    "foil": "gold"
+   },
+   "inside": "#1f2a4d",
+   "insidePrint": true,
+   "finish": "matte",
+   "description": "Navy with tiny gold stars. A seasonal favourite for holiday gift boxes."
+  },
+  {
+   "id": "kraft-rsc-shipper",
+   "name": "Kraft Shipping Carton",
+   "style": "shipping",
+   "niches": [
+    "coffee",
+    "apparel",
+    "subscription-boxes"
+   ],
+   "dims": [
+    12,
+    10,
+    6
+   ],
+   "board": "#c8a27a",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "FREESTYLE",
+    "color": "#1e1e20",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#d9bf9f",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "A tough flap-top carton with a one-colour logo. The cheapest way to brand big orders."
+  },
+  {
+   "id": "white-bold-shipper",
+   "name": "White Bold Shipper",
+   "style": "shipping",
+   "niches": [
+    "apparel"
+   ],
+   "dims": [
+    16,
+    12,
+    10
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "HANDLE WITH HYPE",
+    "color": "#e4572e",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Bright white B-flute with a big red message on every side."
+  },
+  {
+   "id": "diagonal-wholesale-shipper",
+   "name": "Diagonal Wholesale Shipper",
+   "style": "shipping",
+   "niches": [
+    "coffee"
+   ],
+   "dims": [
+    14,
+    10,
+    8
+   ],
+   "board": "#c8a27a",
+   "pattern": {
+    "type": "diagonal",
+    "color": "#6b4226",
+    "color2": null,
+    "scale": 1.6
+   },
+   "logo": {
+    "text": "DRIFT ROASTERS",
+    "color": "#3b2314",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#d9bf9f",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Kraft with diagonal brown bands. Looks great stacked in a café."
+  },
+  {
+   "id": "eco-leaf-shipper",
+   "name": "Eco Leaf Shipper",
+   "style": "shipping",
+   "niches": [
+    "candles",
+    "skincare"
+   ],
+   "dims": [
+    12,
+    10,
+    6
+   ],
+   "board": "#c8a27a",
+   "pattern": {
+    "type": "botanical",
+    "color": "#7a9a6a",
+    "color2": "#9cb38c",
+    "scale": 1
+   },
+   "logo": {
+    "text": "Rooted",
+    "color": "#2f4a3a",
+    "font": "serif",
+    "foil": null
+   },
+   "inside": "#d9bf9f",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Kraft printed with a light leaf pattern in water-based green ink."
+  },
+  {
+   "id": "chevron-shipper",
+   "name": "Chevron Shipper",
+   "style": "shipping",
+   "niches": [
+    "subscription-boxes"
+   ],
+   "dims": [
+    12,
+    12,
+    8
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "chevron",
+    "color": "#3a86ff",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "PACKED",
+    "color": "#1e1e20",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Blue chevrons on white for a fresh, modern subscription brand."
+  },
+  {
+   "id": "black-pro-shipper",
+   "name": "Black Pro Shipper",
+   "style": "shipping",
+   "niches": [
+    "apparel",
+    "skincare"
+   ],
+   "dims": [
+    14,
+    10,
+    6
+   ],
+   "board": "#1e1e20",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "STUDIO",
+    "color": "#ffffff",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#1e1e20",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Fully printed black outside with a white logo."
+  },
+  {
+   "id": "topo-adventure-shipper",
+   "name": "Topo Adventure Shipper",
+   "style": "shipping",
+   "niches": [
+    "apparel",
+    "coffee"
+   ],
+   "dims": [
+    16,
+    12,
+    8
+   ],
+   "board": "#d8cbb4",
+   "pattern": {
+    "type": "topo",
+    "color": "#8a6440",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "TRAILHEAD",
+    "color": "#2f3b2f",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Topographic map lines for outdoor and adventure brands."
+  },
+  {
+   "id": "serum-tuck-carton",
+   "name": "Serum Tuck Carton",
+   "style": "tuck",
+   "niches": [
+    "skincare"
+   ],
+   "dims": [
+    1.8,
+    1.8,
+    5
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "SOLENNE",
+    "color": "#3a2c26",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "soft",
+   "description": "Slim white carton for a 30 ml dropper bottle, with a gold foil name."
+  },
+  {
+   "id": "terrazzo-cream-carton",
+   "name": "Terrazzo Cream Carton",
+   "style": "tuck",
+   "niches": [
+    "skincare"
+   ],
+   "dims": [
+    3,
+    3,
+    3
+   ],
+   "board": "#f1e6dc",
+   "pattern": {
+    "type": "terrazzo",
+    "color": "#d98e73",
+    "color2": "#7f9c8e",
+    "scale": 1
+   },
+   "logo": {
+    "text": "SOLENNE",
+    "color": "#3a2c26",
+    "font": "serif",
+    "foil": null
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Matching terrazzo carton for jars and creams."
+  },
+  {
+   "id": "candle-jar-carton",
+   "name": "Candle Jar Carton",
+   "style": "tuck",
+   "niches": [
+    "candles"
+   ],
+   "dims": [
+    3.6,
+    3.6,
+    4.2
+   ],
+   "board": "#2f4a3a",
+   "pattern": {
+    "type": "botanical",
+    "color": "#5e8064",
+    "color2": "#3d5d49",
+    "scale": 1
+   },
+   "logo": {
+    "text": "Ember & Oak",
+    "color": "#efe4cf",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#efe4cf",
+   "insidePrint": false,
+   "finish": "soft",
+   "description": "Retail carton for an 8 oz jar candle, matching our botanical mailer."
+  },
+  {
+   "id": "marble-luxe-carton",
+   "name": "Marble Luxe Carton",
+   "style": "tuck",
+   "niches": [
+    "skincare",
+    "candles"
+   ],
+   "dims": [
+    3,
+    3,
+    4
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "marble",
+    "color": "#b8b2aa",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "MARBRE",
+    "color": "#1e1e20",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "gloss",
+   "description": "White marble veining with a gold foil logo and gloss lamination."
+  },
+  {
+   "id": "tea-tin-carton",
+   "name": "Tea Tin Carton",
+   "style": "tuck",
+   "niches": [
+    "coffee"
+   ],
+   "dims": [
+    3,
+    3,
+    5
+   ],
+   "board": "#9c3b2f",
+   "pattern": {
+    "type": "triangles",
+    "color": "#b5523f",
+    "color2": "#7d2e24",
+    "scale": 1
+   },
+   "logo": {
+    "text": "Chai Co.",
+    "color": "#f6e3c8",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#f6e3c8",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Spiced red geometric pattern for loose-leaf tea tins."
+  },
+  {
+   "id": "supplement-carton",
+   "name": "Clean Supplement Carton",
+   "style": "tuck",
+   "niches": [
+    "skincare"
+   ],
+   "dims": [
+    2.6,
+    2.6,
+    5
+   ],
+   "board": "#e6f0ea",
+   "pattern": {
+    "type": "stripes",
+    "color": "#7fb69a",
+    "color2": null,
+    "scale": 0.6
+   },
+   "logo": {
+    "text": "VITA",
+    "color": "#1f3d2f",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Fresh mint stripes for supplements and wellness products."
+  },
+  {
+   "id": "rays-perfume-carton",
+   "name": "Sunburst Perfume Carton",
+   "style": "tuck",
+   "niches": [
+    "skincare"
+   ],
+   "dims": [
+    2.4,
+    2.4,
+    4.6
+   ],
+   "board": "#f2c14e",
+   "pattern": {
+    "type": "rays",
+    "color": "#e8a33b",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "Soleil",
+    "color": "#3a2c26",
+    "font": "script",
+    "foil": "gold"
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "gloss",
+   "description": "Golden sunburst rays for fragrance and body oils."
+  },
+  {
+   "id": "dots-kids-carton",
+   "name": "Polka Dot Kids Carton",
+   "style": "tuck",
+   "niches": [
+    "apparel"
+   ],
+   "dims": [
+    6,
+    2,
+    8
+   ],
+   "board": "#bde0fe",
+   "pattern": {
+    "type": "dots",
+    "color": "#ffffff",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "little ones",
+    "color": "#1d3557",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Soft blue with white polka dots for baby clothes and kids' gifts."
+  },
+  {
+   "id": "rigid-gold-gift",
+   "name": "Rigid Gold Gift Box",
+   "style": "rigid",
+   "niches": [
+    "candles",
+    "skincare"
+   ],
+   "dims": [
+    8,
+    8,
+    4
+   ],
+   "board": "#1e1e20",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "NOIR",
+    "color": "#000000",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#1e1e20",
+   "insidePrint": false,
+   "finish": "soft",
+   "description": "A heavy two-piece black box with a gold foil lid. Made to be kept."
+  },
+  {
+   "id": "rigid-blush-set",
+   "name": "Blush Gift Set Box",
+   "style": "rigid",
+   "niches": [
+    "skincare"
+   ],
+   "dims": [
+    10,
+    8,
+    3
+   ],
+   "board": "#f3d9d4",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "Bloom",
+    "color": "#b5655b",
+    "font": "script",
+    "foil": "rose"
+   },
+   "inside": "#fff4f1",
+   "insidePrint": false,
+   "finish": "soft",
+   "description": "Soft-touch blush lid with rose-gold foil, for skincare routine sets."
+  },
+  {
+   "id": "rigid-marble-box",
+   "name": "Marble Keepsake Box",
+   "style": "rigid",
+   "niches": [
+    "candles",
+    "skincare"
+   ],
+   "dims": [
+    8,
+    6,
+    4
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "marble",
+    "color": "#b8b2aa",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "MARBRE",
+    "color": "#1e1e20",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#ffffff",
+   "insidePrint": false,
+   "finish": "gloss",
+   "description": "Marble-wrapped lid and base. Luxury candle and fragrance sets."
+  },
+  {
+   "id": "rigid-forest-hamper",
+   "name": "Forest Hamper Box",
+   "style": "rigid",
+   "niches": [
+    "coffee",
+    "candles"
+   ],
+   "dims": [
+    14,
+    10,
+    5
+   ],
+   "board": "#2f4a3a",
+   "pattern": {
+    "type": "grid",
+    "color": "#3d5d49",
+    "color2": null,
+    "scale": 1.5
+   },
+   "logo": {
+    "text": "Ember & Oak",
+    "color": "#efe4cf",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#efe4cf",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Large green hamper box with a subtle grid and gold name."
+  },
+  {
+   "id": "rigid-navy-stars",
+   "name": "Navy Stars Gift Box",
+   "style": "rigid",
+   "niches": [
+    "subscription-boxes",
+    "candles"
+   ],
+   "dims": [
+    10,
+    10,
+    4
+   ],
+   "board": "#1f2a4d",
+   "pattern": {
+    "type": "stars",
+    "color": "#f2d16b",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "Night Sky",
+    "color": "#f2d16b",
+    "font": "script",
+    "foil": "gold"
+   },
+   "inside": "#1f2a4d",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Holiday navy with gold stars, matching the starry mailer."
+  },
+  {
+   "id": "rigid-kraft-heritage",
+   "name": "Kraft Heritage Box",
+   "style": "rigid",
+   "niches": [
+    "coffee"
+   ],
+   "dims": [
+    10,
+    8,
+    4
+   ],
+   "board": "#c8a27a",
+   "pattern": {
+    "type": "topo",
+    "color": "#a37b52",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "HOMESTEAD",
+    "color": "#2c4a3a",
+    "font": "serif",
+    "foil": null
+   },
+   "inside": "#d9bf9f",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Kraft paper-wrapped rigid box with a printed contour pattern."
+  },
+  {
+   "id": "drawer-noir",
+   "name": "Noir Drawer Box",
+   "style": "drawer",
+   "niches": [
+    "skincare",
+    "candles"
+   ],
+   "dims": [
+    8,
+    5,
+    2.5
+   ],
+   "board": "#1e1e20",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "NOIR",
+    "color": "#000000",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#d4af6a",
+   "insidePrint": false,
+   "finish": "soft",
+   "description": "A slide-out drawer in matte black with a gold tray inside."
+  },
+  {
+   "id": "drawer-terrazzo",
+   "name": "Terrazzo Drawer Box",
+   "style": "drawer",
+   "niches": [
+    "skincare"
+   ],
+   "dims": [
+    7,
+    5,
+    2
+   ],
+   "board": "#f1e6dc",
+   "pattern": {
+    "type": "terrazzo",
+    "color": "#d98e73",
+    "color2": "#7f9c8e",
+    "scale": 1
+   },
+   "logo": {
+    "text": "SOLENNE",
+    "color": "#3a2c26",
+    "font": "serif",
+    "foil": null
+   },
+   "inside": "#d98e73",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Terrazzo sleeve with a coral tray. Great for jewellery and minis."
+  },
+  {
+   "id": "drawer-coffee-tasting",
+   "name": "Coffee Tasting Drawer",
+   "style": "drawer",
+   "niches": [
+    "coffee"
+   ],
+   "dims": [
+    9,
+    6,
+    3
+   ],
+   "board": "#3b2314",
+   "pattern": {
+    "type": "waves",
+    "color": "#6b4226",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "DRIFT ROASTERS",
+    "color": "#e9dccb",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#e9dccb",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Espresso-brown sleeve with a cream tray for tasting sets."
+  },
+  {
+   "id": "drawer-sunday",
+   "name": "Sunday Club Drawer",
+   "style": "drawer",
+   "niches": [
+    "apparel",
+    "subscription-boxes"
+   ],
+   "dims": [
+    10,
+    7,
+    3
+   ],
+   "board": "#f6e3c8",
+   "pattern": {
+    "type": "stripes",
+    "color": "#e4572e",
+    "color2": "#f2a541",
+    "scale": 1
+   },
+   "logo": {
+    "text": "SUNDAY CLUB",
+    "color": "#1e1e20",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#e4572e",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Striped sleeve with a bold orange tray."
+  },
+  {
+   "id": "drawer-chai",
+   "name": "Chai Drawer Box",
+   "style": "drawer",
+   "niches": [
+    "coffee"
+   ],
+   "dims": [
+    8,
+    4,
+    2
+   ],
+   "board": "#9c3b2f",
+   "pattern": {
+    "type": "triangles",
+    "color": "#b5523f",
+    "color2": "#7d2e24",
+    "scale": 1
+   },
+   "logo": {
+    "text": "Chai Co.",
+    "color": "#f6e3c8",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#f6e3c8",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Spiced red sleeve for tea sampler sets."
+  },
+  {
+   "id": "magnetic-ivory",
+   "name": "Ivory Magnetic Box",
+   "style": "magnetic",
+   "niches": [
+    "skincare",
+    "candles"
+   ],
+   "dims": [
+    9,
+    7,
+    3.5
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "solid",
+    "color": "#000000",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "atelier",
+    "color": "#1e1e20",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#f6f3ee",
+   "insidePrint": false,
+   "finish": "soft",
+   "description": "Ivory book-style box with a magnetic flap and gold foil."
+  },
+  {
+   "id": "magnetic-forest",
+   "name": "Forest Magnetic Box",
+   "style": "magnetic",
+   "niches": [
+    "candles"
+   ],
+   "dims": [
+    8,
+    8,
+    4
+   ],
+   "board": "#2f4a3a",
+   "pattern": {
+    "type": "botanical",
+    "color": "#5e8064",
+    "color2": "#3d5d49",
+    "scale": 1
+   },
+   "logo": {
+    "text": "Ember & Oak",
+    "color": "#efe4cf",
+    "font": "serif",
+    "foil": "gold"
+   },
+   "inside": "#efe4cf",
+   "insidePrint": true,
+   "finish": "soft",
+   "description": "Our botanical design as a premium magnetic gift box."
+  },
+  {
+   "id": "magnetic-checker",
+   "name": "Checker Magnetic Box",
+   "style": "magnetic",
+   "niches": [
+    "apparel"
+   ],
+   "dims": [
+    12,
+    9,
+    4
+   ],
+   "board": "#f6f3ee",
+   "pattern": {
+    "type": "checker",
+    "color": "#1e1e20",
+    "color2": null,
+    "scale": 1.4
+   },
+   "logo": {
+    "text": "KERB",
+    "color": "#e4572e",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#1e1e20",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Checker magnetic box for limited-edition drops and PR kits."
+  },
+  {
+   "id": "magnetic-rose",
+   "name": "Rose Magnetic Box",
+   "style": "magnetic",
+   "niches": [
+    "skincare"
+   ],
+   "dims": [
+    8,
+    6,
+    3
+   ],
+   "board": "#f3d9d4",
+   "pattern": {
+    "type": "scallop",
+    "color": "#ecc3bb",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "Bloom",
+    "color": "#b5655b",
+    "font": "script",
+    "foil": "rose"
+   },
+   "inside": "#fff4f1",
+   "insidePrint": false,
+   "finish": "soft",
+   "description": "Scalloped blush magnetic box for influencer kits."
+  },
+  {
+   "id": "magnetic-night",
+   "name": "Midnight Magnetic Box",
+   "style": "magnetic",
+   "niches": [
+    "subscription-boxes",
+    "candles"
+   ],
+   "dims": [
+    10,
+    8,
+    4
+   ],
+   "board": "#1f2a4d",
+   "pattern": {
+    "type": "stars",
+    "color": "#f2d16b",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "Night Sky",
+    "color": "#f2d16b",
+    "font": "script",
+    "foil": "gold"
+   },
+   "inside": "#1f2a4d",
+   "insidePrint": false,
+   "finish": "matte",
+   "description": "Navy and gold stars, opening like a book."
+  },
+  {
+   "id": "magnetic-halftone",
+   "name": "Halftone Magnetic Box",
+   "style": "magnetic",
+   "niches": [
+    "apparel",
+    "subscription-boxes"
+   ],
+   "dims": [
+    10,
+    8,
+    3
+   ],
+   "board": "#ffd23f",
+   "pattern": {
+    "type": "halftone",
+    "color": "#e4572e",
+    "color2": null,
+    "scale": 1
+   },
+   "logo": {
+    "text": "POP SHOP",
+    "color": "#1e1e20",
+    "font": "sans",
+    "foil": null
+   },
+   "inside": "#1e1e20",
+   "insidePrint": false,
+   "finish": "gloss",
+   "description": "Pop-art yellow with red halftone dots."
+  }
+ ]
+}
