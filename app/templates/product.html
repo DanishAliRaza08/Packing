@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+
+{% block head %}
+{% if price_range %}
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org", "@type": "Product",
+  "name": p.name | m, "description": p.description | m,
+  "brand": {"@type": "Brand", "name": site.brand_name},
+  "offers": {"@type": "AggregateOffer", "priceCurrency": pricing_cfg.markets[market].code,
+             "lowPrice": "%.2f" % price_range[0], "highPrice": "%.2f" % price_range[1],
+             "offerCount": table | length, "availability": "https://schema.org/InStock"}
+} | json_ld }}</script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>{{ p.name | m }}</h1>
+      <p class="lead">{{ p.lead | m }}</p>
+      {% if price_range %}<p class="price-from">From {{ money(price_range[0]) }} per box at volume · minimum {{ pricing_cfg.styles[p.style].min_qty }} boxes</p>{% endif %}
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="{{ link('quote', style=p.style or 'addons') }}">Get a free quote</a>
+        {% if p.style %}<a class="btn btn-ghost btn-lg" href="{{ link('pricing', style=p.style) }}">Estimate a price</a>{% endif %}
+      </div>
+    </div>
+    {{ ui.photo((p.name | m) ~ ", printed, front and open", (p.name | m) ~ " printed with a brand logo", "5/4") }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    <h2>What {{ 'they are' if not p.style else 'it is' }} and who {{ 'they are' if not p.style else 'it is' }} for</h2>
+    <p>{{ p.what | m }}</p>
+    <ul class="ticks">{% for w in p.who %}<li>{{ w | m }}</li>{% endfor %}</ul>
+  </div>
+</section>
+
+{% if p.addons %}
+<section class="section alt">
+  <div class="container">
+    <h2>Add-ons we make</h2>
+    <div class="card-grid">
+      {% for name, desc, minimum in p.addons %}
+      <div class="card"><div class="card-body"><h3>{{ name }}</h3><p>{{ desc }}</p><p class="muted">Minimum: {{ minimum }}</p></div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="section alt">
+  <div class="container narrow prose">
+    <h2>Standard sizes</h2>
+    <p>Any size is possible. These are popular starting points; custom sizes are free from {{ "{:,}".format(site.free_custom_sizing_from) }} boxes.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Size</th><th scope="col">Inside dimensions (L × W × H)</th></tr></thead>
+        <tbody>{% for name, d in p.sizes %}<tr><td>{{ name }}</td><td>{{ dims(d) }}</td></tr>{% endfor %}</tbody>
+      </table>
+    </div>
+
+    <h2>Materials</h2>
+    <ul>{% for key, label in materials %}<li>{{ label }}</li>{% endfor %}</ul>
+
+    <h2>Print options</h2>
+    <ul>
+      <li><strong>Outside print:</strong> your logo and design on the outside of the box.</li>
+      <li><strong>Inside print:</strong> a message or pattern revealed when the box opens.</li>
+      <li><strong>One {{ t.colour }}:</strong> the most affordable option, great on kraft.</li>
+      <li><strong>Full {{ t.colour }}:</strong> photos, gradients and detailed artwork.</li>
+    </ul>
+
+    <h2>Finishes</h2>
+    <ul>{% for name, desc in finishes %}<li><strong>{{ name }}:</strong> {{ desc }}</li>{% endfor %}</ul>
+
+    <h2>Prices</h2>
+    <p>Indicative prices for a {{ dims(pricing_cfg.reference_size_in) }} box, printed outside, delivered with duties included. Your exact price depends on size, material and print, and is confirmed in your quote.</p>
+    {{ ui.price_table(table, (p.name | m) ~ " — from prices by quantity") }}
+    <p><a href="{{ link('pricing', style=p.style) }}">Try the instant price estimator →</a></p>
+  </div>
+</section>
+{% endif %}
+
+<section class="section">
+  <div class="container narrow prose">
+    <h2>Lead times</h2>
+    <p>{{ p.lead_time | m }} You approve a 3D mockup and a physical sample first, and we send photos of your boxes before they ship.</p>
+    <h2>Popular with</h2>
+    <ul class="link-list">
+      {% for n in niches %}<li><a href="{{ link('niche', slug=n.slug) }}">Packaging for {{ n.name }}</a></li>{% endfor %}
+    </ul>
+    <h2>Other box styles</h2>
+    <ul class="link-list">
+      {% for o in others %}<li><a href="{{ link('product', slug=o.slug) }}">{{ o.name | m }}</a></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+{{ ui.faq_block(p.faqs, (p.name | m) ~ " FAQ") }}
+{{ ui.cta() }}
+{% endblock %}

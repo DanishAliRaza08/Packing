@@ -1,0 +1,43 @@
+{% extends "blog/post_base.html" %}
+
+{% block toc %}
+<nav class="toc" aria-label="On this page">
+  <p><strong>On this page</strong></p>
+  <ol>
+    <li><a href="#prices">Prices by quantity</a></li>
+    <li><a href="#factors">Five things that change the price</a></li>
+    <li><a href="#example">A worked example</a></li>
+    <li><a href="#save">How to pay less</a></li>
+  </ol>
+</nav>
+{% endblock %}
+
+{% block body %}
+<p>Custom printed {{ t.mailer }} usually cost between about {{ money(mailer_table[-1].per_box_low) }} and {{ money(mailer_table[0].per_box_high) }} per box. Where you land in that range depends mostly on how many you order. Here are our real starting prices and what moves them.</p>
+
+<h2 id="prices">Prices by quantity</h2>
+<p>These are our "from" prices for a {{ dims(pricing_cfg.reference_size_in) }} kraft mailer box printed on the outside, delivered to your door with freight and duties included.</p>
+{{ ui.price_table(mailer_table, "Custom " ~ t.mailer ~ " — price per box by quantity") }}
+<p>The jump from 100 to 500 boxes is the biggest saving. Setting up the press costs the same for any run, so a bigger order spreads that cost over more boxes.</p>
+
+<h2 id="factors">Five things that change the price</h2>
+<ol>
+  <li><strong>Quantity.</strong> The biggest factor, as the table shows.</li>
+  <li><strong>Size.</strong> Bigger boxes use more board and weigh more to ship.</li>
+  <li><strong>Board.</strong> White board costs a little more than kraft; thicker B-flute costs more than E-flute.</li>
+  <li><strong>Print.</strong> Printing inside the box adds roughly a third. One {{ t.colour }} costs less than full {{ t.colour }}.</li>
+  <li><strong>Finishes.</strong> Foil, spot UV and embossing add a few cents per box plus a small setup cost.</li>
+</ol>
+
+<h2 id="example">A worked example</h2>
+<p>A candle brand orders 1,000 kraft mailer boxes at our standard size, printed outside. At {{ money(mailer_table[3].per_box_low) }}–{{ money(mailer_table[3].per_box_high) }} per box, that's about {{ money(mailer_table[3].total_low) }}–{{ money(mailer_table[3].total_high) }} delivered. The same order at 250 boxes costs more per box but much less in total, which is often the smarter way to test a new design.</p>
+
+<h2 id="save">How to pay less</h2>
+<ul>
+  <li>Use one box size for several products and add a sticker for each variant.</li>
+  <li>Choose kraft board and a one-{{ t.colour }} logo for a crafted look at the lowest price.</li>
+  <li>Order 2–3 months of boxes at a time to reach the next price break.</li>
+  <li>Keep your artwork on file with us so reorders skip setup work.</li>
+</ul>
+<p>Want a number for your exact box? Try the <a href="{{ link('pricing') }}">instant price estimator</a> or <a href="{{ link('quote') }}">request a quote</a>.</p>
+{% endblock %}

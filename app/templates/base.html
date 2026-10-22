@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="{{ t.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ meta.title | title }}</title>
+  <meta name="description" content="{{ meta.description }}">
+  {% if noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+  {% if site.analytics.search_console_verification %}<meta name="google-site-verification" content="{{ site.analytics.search_console_verification }}">{% endif %}
+
+  {% set canonical = absolute(request.path) %}
+  <link rel="canonical" href="{{ canonical }}">
+  {% if not noindex %}
+    {% set us_url = alternate('us') %}{% set uk_url = alternate('uk') %}
+    {% if us_url %}<link rel="alternate" hreflang="en-us" href="{{ us_url }}">{% endif %}
+    {% if uk_url %}<link rel="alternate" hreflang="en-gb" href="{{ uk_url }}">{% endif %}
+    <link rel="alternate" hreflang="x-default" href="{{ us_url or uk_url }}">
+  {% endif %}
+
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:site_name" content="{{ site.brand_name }}">
+  <meta property="og:title" content="{{ meta.title }}">
+  <meta property="og:description" content="{{ meta.description }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ absolute(url_for('static', filename='img/share.png')) }}">
+  <meta property="og:locale" content="{{ 'en_GB' if market == 'uk' else 'en_US' }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ meta.title }}">
+  <meta name="twitter:description" content="{{ meta.description }}">
+  <meta name="twitter:image" content="{{ absolute(url_for('static', filename='img/share.png')) }}">
+
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+
+  <script type="application/ld+json">{{ {
+    "@context": "https://schema.org",
+    "@graph": [
+      {"@type": "Organization", "@id": site.domain ~ "/#org", "name": site.brand_name, "url": site.domain ~ "/",
+       "logo": absolute(url_for('static', filename='img/logo.svg')), "email": site.contact.email,
+       "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "email": site.contact.email, "areaServed": ["US", "GB"]}},
+      {"@type": "WebSite", "@id": site.domain ~ "/#website", "name": site.brand_name, "url": site.domain ~ "/",
+       "publisher": {"@id": site.domain ~ "/#org"}, "inLanguage": t.lang}
+    ]
+  } | json_ld }}</script>
+  {% if crumbs %}
+  <script type="application/ld+json">{{ {
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    "itemListElement": crumbs_ld(crumbs)
+  } | json_ld }}</script>
+  {% endif %}
+  {% block head %}{% endblock %}
+</head>
+<body data-market="{{ market }}" {% if event %}data-event="{{ event }}"{% endif %}
+      data-ga4="{{ site.analytics.ga4_id }}" data-clarity="{{ site.analytics.clarity_id }}">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="{{ link('home') }}" aria-label="{{ site.brand_name }} home">
+        <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" width="32" height="32">
+        <span>{{ site.brand_name }}</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Menu</span><span class="bars" aria-hidden="true"></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          <li class="has-menu">
+            <a href="{{ link('product', slug='custom-mailer-boxes') }}">Box styles</a>
+            <ul class="submenu">
+              {% for p in nav_products %}<li><a href="{{ link('product', slug=p.slug) }}">{{ p.name | m }}</a></li>{% endfor %}
+            </ul>
+          </li>
+          <li class="has-menu">
+            <a href="{{ link('niche', slug=site.main_niche) }}">Industries</a>
+            <ul class="submenu">
+              {% for n in nav_niches %}<li><a href="{{ link('niche', slug=n.slug) }}">{{ n.short }}</a></li>{% endfor %}
+            </ul>
+          </li>
+          <li><a href="{{ link('pricing') }}">Pricing</a></li>
+          <li><a href="{{ link('how_it_works') }}">How it works</a></li>
+          <li><a href="{{ link('eco') }}">Eco</a></li>
+          <li><a href="{{ link('faq') }}">FAQ</a></li>
+        </ul>
+        {% set other = 'uk' if market == 'us' else 'us' %}
+        <a class="market-switch" href="{{ switch_url(other) }}" hreflang="{{ 'en-gb' if other == 'uk' else 'en-us' }}">{{ 'UK site (£)' if other == 'uk' else 'US site ($)' }}</a>
+      </nav>
+      <a class="btn btn-primary header-cta" href="{{ link('quote') }}">Get a free quote</a>
+    </div>
+  </header>
+
+  <main id="main">
+    {% if crumbs %}
+    <nav class="breadcrumbs container" aria-label="Breadcrumb">
+      <ol>
+        {% for label, url in crumbs %}
+          <li>{% if url %}<a href="{{ url }}">{{ label }}</a>{% else %}<span aria-current="page">{{ label }}</span>{% endif %}</li>
+        {% endfor %}
+      </ol>
+    </nav>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="footer-brand">{{ site.brand_name }}</p>
+        <p>{{ site.tagline }}. Designed and managed by a small team in Pakistan, with a partner in the US for samples and quality checks.</p>
+        <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
+        <p><a href="https://wa.me/{{ site.contact.whatsapp | replace('[', '') | replace(']', '') }}" data-track="whatsapp_clicked" rel="noopener">WhatsApp us</a></p>
+      </div>
+      <div>
+        <p class="footer-title">Boxes</p>
+        <ul>{% for p in nav_products %}<li><a href="{{ link('product', slug=p.slug) }}">{{ p.name | m }}</a></li>{% endfor %}</ul>
+      </div>
+      <div>
+        <p class="footer-title">Industries</p>
+        <ul>{% for n in nav_niches %}<li><a href="{{ link('niche', slug=n.slug) }}">{{ n.short }}</a></li>{% endfor %}</ul>
+      </div>
+      <div>
+        <p class="footer-title">Company</p>
+        <ul>
+          <li><a href="{{ link('about') }}">About</a></li>
+          <li><a href="{{ link('samples') }}">Samples</a></li>
+          <li><a href="{{ link('blog') }}">Blog</a></li>
+          <li><a href="{{ link('contact') }}">Contact</a></li>
+          <li><a href="{{ link('quote') }}">Get a quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Legal</p>
+        <ul>
+          <li><a href="{{ link('privacy') }}">Privacy policy</a></li>
+          <li><a href="{{ link('terms') }}">Terms of sale</a></li>
+          <li><a href="{{ link('cookies') }}">Cookie policy</a></li>
+          <li><a href="{{ link('shipping') }}">Shipping &amp; returns</a></li>
+          <li><button type="button" class="link-button" data-cookie-settings>Cookie settings</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© {{ year }} {{ site.brand_name }}. {{ site.contact.address_us }}</p>
+      <p>
+        <a href="{{ switch_url('us') }}" hreflang="en-us">United States ($)</a> ·
+        <a href="{{ switch_url('uk') }}" hreflang="en-gb">United Kingdom (£)</a>
+      </p>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie choices" hidden>
+    <div class="container cookie-inner">
+      <p>We use optional analytics cookies to see which pages help visitors. They stay off unless you say yes. <a href="{{ link('cookies') }}">Cookie policy</a></p>
+      <div class="cookie-actions">
+        <button type="button" class="btn btn-secondary" data-consent="denied">Essential only</button>
+        <button type="button" class="btn btn-primary" data-consent="granted">Accept analytics</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/site.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "_help": "All estimator prices live here. Prices are US dollars per box for a reference-size mailer box (kraft E-flute, printed outside, full colour). Every other option multiplies these. Update after you get real factory quotes. The UK site converts with markets.uk.rate.",
+
+  "markets": {
+    "us": { "code": "USD", "symbol": "$", "rate": 1.0, "unit": "in" },
+    "uk": { "code": "GBP", "symbol": "£", "rate": 0.80, "unit": "cm" }
+  },
+
+  "reference_size_in": [9, 6, 3],
+  "size_exponent": 0.7,
+  "size_factor_min": 0.6,
+  "size_factor_max": 4.0,
+  "max_dimension_in": 36,
+
+  "quantity_tiers": [
+    { "min": 100,  "low": 2.20, "high": 2.80 },
+    { "min": 250,  "low": 1.80, "high": 2.10 },
+    { "min": 500,  "low": 1.50, "high": 1.80 },
+    { "min": 1000, "low": 1.30, "high": 1.55 },
+    { "min": 2500, "low": 1.15, "high": 1.40 }
+  ],
+  "table_quantities": [100, 250, 500, 1000, 2500],
+
+  "styles": {
+    "mailer":   { "factor": 1.00, "min_qty": 100, "materials": ["kraft-e", "white-e", "kraft-b", "white-b"] },
+    "shipping": { "factor": 0.90, "min_qty": 100, "materials": ["kraft-b", "white-b", "kraft-e", "white-e"] },
+    "product":  { "factor": 0.70, "min_qty": 250, "materials": ["sbs", "kraft-card"] },
+    "rigid":    { "factor": 3.20, "min_qty": 250, "materials": ["rigid"] }
+  },
+
+  "materials": {
+    "kraft-e":    { "factor": 1.00 },
+    "white-e":    { "factor": 1.08 },
+    "kraft-b":    { "factor": 1.12 },
+    "white-b":    { "factor": 1.20 },
+    "sbs":        { "factor": 1.00 },
+    "kraft-card": { "factor": 0.95 },
+    "rigid":      { "factor": 1.00 }
+  },
+
+  "print_sides": {
+    "outside": { "factor": 1.00 },
+    "both":    { "factor": 1.35 },
+    "plain":   { "factor": 0.70 }
+  }
+}

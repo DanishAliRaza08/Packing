@@ -1,0 +1,19 @@
+{% extends "legal/_layout.html" %}
+{% block legal %}
+<h2>Essential cookies</h2>
+<p>We use one essential session cookie to protect our forms from abuse and keep you signed in to admin. It is always on.</p>
+<h2>Analytics cookies (optional)</h2>
+<p>If you click "Accept analytics", we load Google Analytics 4 and Microsoft Clarity to understand which pages are useful. These stay off until you accept.</p>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th scope="col">Cookie</th><th scope="col">Provider</th><th scope="col">Purpose</th><th scope="col">Duration</th></tr></thead>
+    <tbody>
+      <tr><td>session</td><td>{{ site.brand_name }}</td><td>Form security</td><td>Browser session</td></tr>
+      <tr><td>_ga, _ga_*</td><td>Google</td><td>Analytics (optional)</td><td>Up to 2 years</td></tr>
+      <tr><td>_clck, _clsk, CLID</td><td>Microsoft Clarity</td><td>Heatmaps (optional)</td><td>Up to 1 year</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Your choice is saved in your browser. Change it any time:</p>
+<p><button type="button" class="btn btn-secondary" data-cookie-settings>Change cookie settings</button></p>
+{% endblock %}

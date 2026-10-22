@@ -1,0 +1,34 @@
+{% extends "blog/post_base.html" %}
+
+{% block body %}
+<p>The right candle box is snug enough that the jar can't move, with just enough room to slide it in and out. Here's how to measure, and some sizes that work.</p>
+
+<h2>How to measure your candle</h2>
+<ol>
+  <li>Measure the <strong>widest point</strong> of the jar or tin, often the lid, not the base.</li>
+  <li>Measure the <strong>height with the lid on</strong>.</li>
+  <li>Add about <strong>{{ '3 mm' if market == 'uk' else '1/8 in' }}</strong> to each measurement for a product box, or a little more if you're adding an insert.</li>
+</ol>
+<p>Always give us the <strong>inside</strong> size you need. We work out the outside size from the board thickness.</p>
+
+<h2>Common candle box sizes</h2>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th scope="col">Candle</th><th scope="col">Suggested box (L × W × H)</th></tr></thead>
+    <tbody>
+      <tr><td>Travel tin</td><td>{{ dims([3, 3, 2]) }}</td></tr>
+      <tr><td>8 oz / 225 g jar</td><td>{{ dims([3.5, 3.5, 4]) }}</td></tr>
+      <tr><td>Large jar</td><td>{{ dims([4.5, 4.5, 5]) }}</td></tr>
+      <tr><td>Three-wick candle</td><td>{{ dims([5, 5, 4.5]) }}</td></tr>
+      <tr><td>Gift set of 3 jars</td><td>{{ dims([11, 4, 4.5]) }}</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Do you need an insert?</h2>
+<p>If you post glass jars, yes. A simple card insert holds the jar in the middle of the box so it can't knock against the sides. For shop shelves, a snug product box is usually enough.</p>
+
+<h2>Product box or mailer box?</h2>
+<p>A <a href="{{ link('product', slug='custom-product-boxes') }}">product box</a> is the retail box that sits on a shelf. A <a href="{{ link('product', slug='custom-mailer-boxes') }}">mailer box</a> ships on its own. Many candle brands use a product box inside a plain or printed mailer for online orders.</p>
+<p>Send us your jar size and we'll confirm the best box in your free mockup. See our <a href="{{ link('niche', slug='candles') }}">candle packaging</a> page.</p>
+{% endblock %}

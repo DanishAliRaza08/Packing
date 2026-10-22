@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container narrow">
+    <h1>Frequently asked questions</h1>
+    <p class="lead">Everything about minimums, prices, artwork, production and delivery. Can't find your answer? <a href="{{ link('contact') }}">Ask us</a>.</p>
+    <nav aria-label="FAQ categories"><ul class="chips">{% for name, _ in groups %}<li><a href="#{{ name | slugify }}">{{ name }}</a></li>{% endfor %}</ul></nav>
+  </div>
+</section>
+
+{% for name, faqs in groups %}
+<div id="{{ name | slugify }}">{{ ui.faq_block(faqs, name, name | slugify) }}</div>
+{% endfor %}
+
+{{ ui.cta() }}
+{% endblock %}

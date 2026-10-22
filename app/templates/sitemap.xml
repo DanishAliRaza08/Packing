@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for e in entries %}
+  <url>
+    <loc>{{ e.loc }}</loc>
+    {%- for mkt, href in e.alternates.items() %}
+    <xhtml:link rel="alternate" hreflang="{{ 'en-gb' if mkt == 'uk' else 'en-us' }}" href="{{ href }}"/>
+    {%- endfor %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ e.alternates.get('us', e.loc) }}"/>
+  </url>
+{%- endfor %}
+</urlset>

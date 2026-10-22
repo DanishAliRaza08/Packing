@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container narrow">
+    <h1>About {{ site.brand_name }}</h1>
+    <p class="lead">Custom packaging for {{ main_niche.name }} and other small businesses: a real person, a free mockup in {{ site.mockup_hours }} hours, honest sourcing and better prices from 250 boxes.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    <h2>Why we started</h2>
+    <p class="placeholder-note">[Write 2–3 sentences in your own words: why you started, and what you want small brands to feel when they work with you.]</p>
+
+    <h2>Where your boxes are made</h2>
+    <p>We believe you should know exactly who makes your packaging. Our design and production team works from Pakistan. Bulk runs are made in vetted partner factories in Pakistan, and small rush orders can be printed by a US digital printer. Our partner in the US receives samples and checks quality before your boxes ship, and we send you photos of every order.</p>
+    <p>Working this way is what lets us offer personal service at prices well below self-serve platforms for runs of 250–1,000 boxes.</p>
+
+    <h2>The team</h2>
+    <div class="card-grid team">
+      <figure class="card">
+        {{ ui.photo("real photo of " ~ site.team.lead_name, site.team.lead_name, "1/1") }}
+        <figcaption class="card-body"><strong>{{ site.team.lead_name }}</strong><br>{{ site.team.lead_role }}</figcaption>
+      </figure>
+      <figure class="card">
+        {{ ui.photo("real photo of your US partner", site.team.partner_name, "1/1") }}
+        <figcaption class="card-body"><strong>{{ site.team.partner_name }}</strong><br>{{ site.team.partner_role }}</figcaption>
+      </figure>
+    </div>
+
+    <h2>Our promises</h2>
+    <ul class="ticks">
+      <li>One named contact for your whole order</li>
+      <li>A reply within a few business hours</li>
+      <li>A physical sample before production</li>
+      <li>Photos of your boxes before they ship</li>
+      <li>We reply to every review, good or bad, within 48 hours</li>
+      <li>We never write or buy fake reviews</li>
+    </ul>
+  </div>
+</section>
+
+{{ ui.cta() }}
+{% endblock %}

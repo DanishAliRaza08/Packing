@@ -1,0 +1,41 @@
+{
+  "_help": "Your business details. Change these and restart the site. Values in [square brackets] are placeholders you must replace before launch.",
+
+  "brand_name": "CandleBox Co",
+  "domain": "https://www.example.com",
+  "tagline": "Custom printed boxes for growing brands",
+
+  "main_niche": "candles",
+  "secondary_niches": ["skincare", "coffee", "apparel", "subscription-boxes"],
+
+  "min_units": 100,
+  "free_custom_sizing_from": 500,
+  "production_days": "10–20",
+  "mockup_hours": 24,
+
+  "contact": {
+    "email": "hello@example.com",
+    "phone": "[+1 000 000 0000]",
+    "whatsapp": "[10000000000]",
+    "address_us": "[Registered business address, City, State ZIP]",
+    "address_note": "Our US partner receives samples and checks quality at this address."
+  },
+
+  "team": {
+    "lead_name": "Danish",
+    "lead_role": "Founder — design, sourcing and your named contact",
+    "partner_name": "[US partner name]",
+    "partner_role": "US partner — samples, quality checks and US support"
+  },
+
+  "social": {
+    "instagram": "",
+    "linkedin": ""
+  },
+
+  "analytics": {
+    "ga4_id": "",
+    "clarity_id": "",
+    "search_console_verification": ""
+  }
+}

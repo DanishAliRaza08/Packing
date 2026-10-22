@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container narrow">
+    <h1>How custom packaging works</h1>
+    <p class="lead">From your idea to boxes at your door in five steps. You see your box, then hold a sample, before you pay for production.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow">
+    <ol class="steps vertical">
+      {% for title, text in steps %}
+      <li><span class="step-num" aria-hidden="true">{{ loop.index }}</span><div><h2>{{ title }}</h2><p>{{ text | m }}</p></div></li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container narrow prose">
+    <h2>Who does what</h2>
+    <ul>
+      <li><strong>{{ site.team.lead_name }}</strong> is your named contact: sizing, artwork, mockups, quotes and production updates on email or WhatsApp.</li>
+      <li><strong>Our partner factories</strong> in Pakistan print and make bulk runs. Small rush orders can be printed by a US digital printer.</li>
+      <li><strong>Our US partner</strong> receives samples, checks quality and helps with anything that needs someone on the ground in the US.</li>
+    </ul>
+    <h2>Timeline</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Stage</th><th scope="col">Typical time</th></tr></thead>
+        <tbody>
+          <tr><td>3D mockup and quote</td><td>Within {{ site.mockup_hours }} hours</td></tr>
+          <tr><td>Physical sample</td><td>5–7 business days, plus shipping</td></tr>
+          <tr><td>Production</td><td>{{ site.production_days }} business days</td></tr>
+          <tr><td>Delivery</td><td>5–10 business days</td></tr>
+          <tr><td>Reorders</td><td>Straight to production — no mockup or sample needed</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2>Payment</h2>
+    <p>50% when you approve your sample, 50% before your boxes ship. We invoice from our US company; you can pay by card or bank transfer{% if market == 'uk' %}, in GBP{% endif %}.</p>
+  </div>
+</section>
+
+{{ ui.cta() }}
+{% endblock %}

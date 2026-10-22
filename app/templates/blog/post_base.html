@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+{% block og_type %}article{% endblock %}
+
+{% block head %}
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org", "@type": "Article",
+  "headline": post.title | m, "description": post.description | m,
+  "datePublished": post.published, "dateModified": post.updated,
+  "author": {"@type": "Person", "name": author.name},
+  "publisher": {"@id": site.domain ~ "/#org"},
+  "mainEntityOfPage": absolute(request.path), "inLanguage": t.lang
+} | json_ld }}</script>
+{% endblock %}
+
+{% block content %}
+<article class="section">
+  <div class="container narrow prose">
+    <p class="eyebrow">{{ post.category }}</p>
+    <h1>{{ post.title | m }}</h1>
+    <p class="post-meta">By {{ author.name }} · Published <time datetime="{{ post.published }}">{{ post.published }}</time>
+      {% if post.updated != post.published %}· Updated <time datetime="{{ post.updated }}">{{ post.updated }}</time>{% endif %}</p>
+    {% block toc %}{% endblock %}
+    {% block body %}{% endblock %}
+
+    <aside class="card cta-inline">
+      <div class="card-body">
+        <h2 class="h3">Need {{ (product.name | m).lower() }}?</h2>
+        <p>Free 3D mockup in {{ site.mockup_hours }} hours, from {{ site.min_units }} boxes.</p>
+        <a class="btn btn-primary" href="{{ link('product', slug=product.slug) }}">See {{ (product.name | m).lower() }}</a>
+      </div>
+    </aside>
+
+    <aside class="author-box">
+      <p><strong>{{ author.name }}</strong></p>
+      <p>{{ author.bio }}</p>
+    </aside>
+
+    {% if related %}
+    <h2>Related guides</h2>
+    <ul class="link-list">{% for r in related %}<li><a href="{{ link('blog_post', slug=r.slug) }}">{{ r.title | m }}</a></li>{% endfor %}</ul>
+    {% endif %}
+  </div>
+</article>
+{% endblock %}

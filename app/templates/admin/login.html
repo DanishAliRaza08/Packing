@@ -1,0 +1,15 @@
+{% extends "admin/_layout.html" %}
+{% block content %}
+<form class="card narrow-card" method="post">
+  <div class="card-body">
+    <h1>Admin login</h1>
+    {% if error %}<p class="field-error" role="alert">{{ error }}</p>{% endif %}
+    <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required autofocus>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Log in</button>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container narrow prose">
+    <h1>{{ meta.title }}</h1>
+    <p class="placeholder-note">Starter text only. Have a lawyer check this page for the US and UK before launch.</p>
+    <p class="muted">Last updated: [date]</p>
+    {% block legal %}{% endblock %}
+  </div>
+</section>
+{% endblock %}

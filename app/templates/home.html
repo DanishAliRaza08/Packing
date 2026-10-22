@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Custom packaging for {{ niche.name }}</p>
+      <h1>{{ niche.hero }}</h1>
+      <p class="lead">Printed boxes from {{ site.min_units }} units, with a free 3D mockup in {{ site.mockup_hours }} hours and a real person looking after your order from first sketch to doorstep.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="{{ link('quote') }}">Get a free quote</a>
+        <a class="btn btn-ghost btn-lg" href="#box-styles">See box styles</a>
+      </div>
+      <p class="hero-note">No payment until you approve your mockup. Prices in {{ pricing_cfg.markets[market].code }}.</p>
+    </div>
+    <div class="hero-media">
+      {{ ui.photo("your best " ~ niche.short.lower() ~ " box, opened, on a clean background", "Custom printed " ~ niche.short.lower() ~ " box with branded lid", "5/4") }}
+    </div>
+  </div>
+  <div class="container">{{ ui.trust_bar(trust) }}</div>
+</section>
+
+<section class="section" id="box-styles" aria-labelledby="styles-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="styles-title">Box styles</h2>
+      <p>Every style is made to your size, printed in your {{ t.colours }}, and delivered with freight and duties included.</p>
+    </div>
+    <div class="card-grid">
+      {% for p in products %}
+      <a class="card product-card" href="{{ link('product', slug=p.slug) }}">
+        {{ ui.photo(p.name | m, (p.name | m) ~ " example") }}
+        <div class="card-body">
+          <h3>{{ p.name | m }}</h3>
+          <p>{{ p.lead | m }}</p>
+          {% if p.slug in from_prices %}<p class="price-from">From {{ money(from_prices[p.slug]) }} per box</p>{% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section alt" aria-labelledby="how-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="how-title">How it works</h2>
+      <p>Five steps, one named contact, and you see your box before you pay for production.</p>
+    </div>
+    <ol class="steps">
+      {% for title, text in steps %}
+      <li><span class="step-num" aria-hidden="true">{{ loop.index }}</span><h3>{{ title }}</h3><p>{{ text | m }}</p></li>
+      {% endfor %}
+    </ol>
+    <p class="center"><a href="{{ link('how_it_works') }}">More about how it works →</a></p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="niches-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="niches-title">Packaging for your industry</h2>
+      <p>We know the sizes, inserts and finishes that work for each kind of product.</p>
+    </div>
+    <div class="card-grid niches">
+      {% for n in niches %}
+      <a class="card niche-card" href="{{ link('niche', slug=n.slug) }}">
+        <div class="card-body">
+          <h3>{{ n.short }}</h3>
+          <p>{{ n.intro | truncate(120) }}</p>
+          <span class="card-link">{{ n.keyword | m }} →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section honest" aria-labelledby="honest-title">
+  <div class="container split">
+    <div>
+      <h2 id="honest-title">Honest about where your boxes are made</h2>
+      <p>We design your packaging and manage production from Pakistan, in vetted partner factories, with a US digital printer for small rush orders. Our partner in the US receives samples and checks quality before your run ships.</p>
+      <ul class="ticks">
+        <li>One named contact who replies within a few business hours</li>
+        <li>Photos of your actual boxes before they ship</li>
+        <li>Better prices from 250–1,000 boxes than self-serve platforms</li>
+        <li>Free custom sizing from {{ "{:,}".format(site.free_custom_sizing_from) }} boxes</li>
+      </ul>
+      <a class="btn btn-secondary" href="{{ link('about') }}">Meet the team</a>
+    </div>
+    {{ ui.photo("your team at work, or a factory visit", "Our team checking printed boxes") }}
+  </div>
+</section>
+
+<section class="section alt eco-band" aria-labelledby="eco-title">
+  <div class="container split reverse">
+    {{ ui.photo("plain kraft mailer box with a one-colour logo", "Recyclable kraft mailer box printed with water-based ink") }}
+    <div>
+      <h2 id="eco-title">Eco options as standard</h2>
+      <p>Recyclable {{ t.cardboard }}, water-based inks and plastic-free designs.
+        {% if market == 'uk' %}Every invoice lists the material and weight per box, so UK packaging EPR reporting is easy.{% else %}Several US states now have packaging laws, and recyclable boxes keep you ahead of them.{% endif %}</p>
+      <a class="btn btn-secondary" href="{{ link('eco') }}">Eco materials</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="reviews-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="reviews-title">What our clients say</h2>
+    </div>
+    <div class="card-grid testimonials">
+      {% for i in range(3) %}
+      <figure class="card testimonial placeholder-note">
+        <blockquote><p>Placeholder: replace with a real client review (with their permission). Never invent reviews.</p></blockquote>
+        <figcaption>[Client name], [Brand]</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{{ ui.faq_block(faqs) }}
+<p class="center"><a href="{{ link('faq') }}">See all questions →</a></p>
+
+{{ ui.cta() }}
+{% endblock %}

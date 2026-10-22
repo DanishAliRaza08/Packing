@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section">
+  <div class="container narrow center">
+    <h1>Thank you — we've got your {{ kind }} request</h1>
+    {% if kind == 'quote' %}
+    <p class="lead">{{ site.team.lead_name }} will reply within a few business hours, and you'll get your free 3D mockup and delivered price within {{ site.mockup_hours }} hours.</p>
+    <ol class="next-steps">
+      <li>Check your inbox for a confirmation email (and your spam folder, just in case).</li>
+      <li>We review your sizes and artwork, and may ask a quick question.</li>
+      <li>You receive your 3D mockup and quote. Approve it, and we make your sample.</li>
+    </ol>
+    {% elif kind == 'sample' %}
+    <p class="lead">We'll confirm your delivery address and send your material samples.</p>
+    {% else %}
+    <p class="lead">We'll reply within a few business hours.</p>
+    {% endif %}
+    <p><a class="btn btn-secondary" href="{{ link('home') }}">Back to the home page</a></p>
+  </div>
+</section>
+{% endblock %}

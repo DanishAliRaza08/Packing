@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container narrow">
+    <h1>Packaging guides and advice</h1>
+    <p class="lead">Straight answers on prices, sizes, materials and eco packaging, from the people who make the boxes.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="card-grid">
+      {% for post in posts %}
+      <a class="card" href="{{ link('blog_post', slug=post.slug) }}">
+        <div class="card-body">
+          <p class="eyebrow">{{ post.category }}</p>
+          <h2 class="h3">{{ post.title | m }}</h2>
+          <p>{{ post.description | m }}</p>
+          <p class="muted"><time datetime="{{ post.published }}">{{ post.published }}</time></p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

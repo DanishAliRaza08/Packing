@@ -1,0 +1,18 @@
+{% extends "legal/_layout.html" %}
+{% block legal %}
+<h2>Delivery</h2>
+<p>All prices are delivered prices: freight and import duties are included, to the address on your quote{% if market == 'uk' %}. UK business clients normally handle import VAT; we'll explain how it works for your order{% endif %}.</p>
+<h2>Lead times</h2>
+<ul>
+  <li>3D mockup: within {{ site.mockup_hours }} hours</li>
+  <li>Pre-production sample: 5–7 business days, plus shipping</li>
+  <li>Production: {{ site.production_days }} business days after sample approval</li>
+  <li>Shipping: usually 5–10 business days</li>
+</ul>
+<h2>Photos before shipping</h2>
+<p>We send photos of your finished boxes before they ship.</p>
+<h2>Damaged or wrong boxes</h2>
+<p>Tell us within 7 days of delivery with photos of the boxes and packaging. If boxes are faulty or don't match your approved sample, we'll reprint or refund the affected boxes.</p>
+<h2>Returns</h2>
+<p>Because every order is custom printed with your brand, we can't accept returns for change of mind. This doesn't affect your rights if boxes are faulty.</p>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "legal/_layout.html" %}
+{% block legal %}
+<h2>Who we are</h2>
+<p>{{ site.brand_name }} is operated by [Company legal name LLC], {{ site.contact.address_us }}. Contact: <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>.</p>
+<h2>What we collect</h2>
+<ul>
+  <li><strong>Details you give us</strong> in our quote, sample and contact forms: name, company, email, phone, country, delivery postcode, order details and artwork files.</li>
+  <li><strong>Analytics data</strong>, only if you accept analytics cookies: pages visited, device type and approximate location, through Google Analytics 4 and Microsoft Clarity.</li>
+</ul>
+<h2>Why we use it</h2>
+<ul>
+  <li>To reply to your request, prepare mockups and quotes, and deliver your order (contract and legitimate interest).</li>
+  <li>To improve our website, only with your consent.</li>
+</ul>
+<p>We never sell your data.</p>
+<h2>Who we share it with</h2>
+<p>Our production partners (only what's needed to make and ship your boxes), our email and hosting providers, payment processors (Stripe or Wise) and, with consent, analytics providers.</p>
+<h2>International transfers</h2>
+<p>Our team works from Pakistan and the US. Where data leaves the UK, we use appropriate safeguards such as standard contractual clauses.</p>
+<h2>How long we keep it</h2>
+<p>Quote requests that don't become orders: 2 years. Order records: as long as tax law requires (usually 6–7 years). Artwork: until you ask us to delete it, so reorders are easy.</p>
+<h2>Your rights</h2>
+<p>You can ask to see, correct or delete your data, object to how we use it, or withdraw consent at any time by emailing us. UK residents can complain to the Information Commissioner's Office (ico.org.uk).</p>
+{% endblock %}
