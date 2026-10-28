@@ -1,0 +1,23 @@
+{
+  "name": "freestyle-packing",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Freestyle Packing website: custom printed boxes, 3D Box Studio, quotes and admin.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cookie-session": "2.1.1",
+    "dotenv": "16.4.7",
+    "express": "4.22.3",
+    "multer": "2.5.0",
+    "nodemailer": "10.2.1",
+    "nunjucks": "3.2.4"
+  }
+}

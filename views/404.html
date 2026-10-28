@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% set meta = {"title": "Page not found", "description": "This page doesn't exist."} %}
+{% set noindex = true %}
+
+{% block content %}
+<section class="section">
+  <div class="container narrow center">
+    <h1>Sorry, we can't find that page</h1>
+    <p class="lead">It may have moved. Search the site or try one of these pages.</p>
+    <form class="search-form" action="{{ link('search') }}" role="search">
+      <label for="q" class="sr-only">Search the site</label>
+      <input id="q" name="q" type="search" placeholder="e.g. mailer boxes">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <ul class="link-list center-list">
+      <li><a href="{{ link('home') }}">Home</a></li>
+      <li><a href="{{ link('product', slug='custom-mailer-boxes') }}">{{ t.Mailer }}</a></li>
+      <li><a href="{{ link('pricing') }}">Price estimator</a></li>
+      <li><a href="{{ link('quote') }}">Get a free quote</a></li>
+      <li><a href="{{ link('faq') }}">FAQ</a></li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

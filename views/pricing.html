@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+{% set unit = pricing_cfg.markets[market].unit %}
+{% set chosen = request.args.get('style', 'mailer') %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container narrow">
+    <h1>Instant price estimator</h1>
+    <p class="lead">Choose a style, size and quantity to see a price range per box and in total, delivered with duties included.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container estimator-grid">
+    <form class="card estimator" id="estimator" data-endpoint="{{ link('api_estimate') }}" novalidate>
+      <div class="card-body">
+        <div class="field">
+          <label for="est-style">Box style</label>
+          <select id="est-style" name="style">
+            {% for key, label, cfg in styles %}
+            <option value="{{ key }}" data-materials="{{ cfg.materials | join(',') }}" data-min="{{ cfg.min_qty }}" {% if key == chosen %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <fieldset class="field">
+          <legend>Inside size ({{ 'centimetres' if unit == 'cm' else 'inches' }})</legend>
+          {% set ref = pricing_cfg.reference_size_in %}
+          <div class="grid-3">
+            {% for dim, label in [['length', 'Length'], ['width', 'Width'], ['height', 'Height']] %}
+            <div>
+              <label for="est-{{ dim }}">{{ label }}</label>
+              <input id="est-{{ dim }}" name="{{ dim }}" type="number" inputmode="decimal" min="0.5" step="0.1"
+                     value="{{ ((ref[loop.index0] * 2.54) | round(1)) if unit == 'cm' else ref[loop.index0] }}">
+            </div>
+            {% endfor %}
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="est-material">Material</label>
+          <select id="est-material" name="material">
+            {% for key, label in material_labels %}<option value="{{ key }}">{{ label }}</option>{% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label for="est-sides">Printing</label>
+          <select id="est-sides" name="sides">
+            {% for key, label in print_labels %}<option value="{{ key }}">{{ label }}</option>{% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label for="est-qty">Quantity</label>
+          <input id="est-qty" name="quantity" type="number" inputmode="numeric" min="100" step="50" value="500">
+        </div>
+      </div>
+    </form>
+
+    <div class="card estimate-result" aria-live="polite">
+      <div class="card-body">
+        <p class="muted">Estimated price per box</p>
+        <p class="estimate-big" id="est-per-box">—</p>
+        <p class="muted">Estimated order total</p>
+        <p class="estimate-total" id="est-total">—</p>
+        <p class="field-error" id="est-error" hidden></p>
+        <p class="note">Estimate only. Final price confirmed in your quote, including freight and duties. Quotes are valid for 15–30 days.</p>
+        <a class="btn btn-primary btn-block" id="est-quote" href="{{ link('quote') }}">Get an exact quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container narrow prose">
+    <h2>From prices by box style</h2>
+    <p>For a {{ dims(pricing_cfg.reference_size_in) }} box, printed outside, standard material.</p>
+    {% for key, label, cfg in styles %}{{ ui.price_table(tables[key], label) }}{% endfor %}
+    <h2>What changes the price?</h2>
+    <ul>
+      <li><strong>Quantity:</strong> setup costs are shared across the run, so price per box falls as you order more.</li>
+      <li><strong>Size:</strong> bigger boxes use more board and cost more to ship.</li>
+      <li><strong>Material:</strong> white and thicker B-flute board cost more than kraft E-flute.</li>
+      <li><strong>Printing:</strong> printing inside adds about a third; plain boxes cost less.</li>
+      <li><strong>Finishes:</strong> foil, spot UV and embossing are quoted separately.</li>
+    </ul>
+    <p>Read more: <a href="{{ link('blog_post', slug='how-much-do-custom-mailer-boxes-cost') }}">How much do custom {{ t.mailer }} cost?</a></p>
+  </div>
+</section>
+
+{{ ui.cta() }}
+{% endblock %}
+
+{% block scripts %}<script src="{{ url_for('static', filename='js/estimator.js') }}" defer></script>{% endblock %}

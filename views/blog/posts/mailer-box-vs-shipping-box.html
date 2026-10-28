@@ -1,0 +1,37 @@
+{% extends "blog/post_base.html" %}
+
+{% block body %}
+<p>Both boxes are made from corrugated board and both can carry your logo. The difference is how they open, what they cost and how they make your customer feel.</p>
+
+<h2>Mailer box</h2>
+<p>A mailer box{% if market == 'uk' %} (often called a postal box in the UK){% endif %} is a one-piece box with a tuck-in lid and locking side flaps. It needs no tape, opens like a gift and can be printed inside. It's the box you see in unboxing videos.</p>
+<ul>
+  <li><strong>Best for:</strong> direct-to-customer orders, subscriptions, gifts and PR kits.</li>
+  <li><strong>Price:</strong> from {{ money((mailer_table | last).per_box_low) }} per box at volume.</li>
+</ul>
+
+<h2>Shipping box</h2>
+<p>A shipping box is the classic flap-top carton that you seal with tape. It uses less board, handles heavier items and costs less per box.</p>
+<ul>
+  <li><strong>Best for:</strong> heavy products, multi-item orders and wholesale.</li>
+  <li><strong>Price:</strong> from {{ money((shipping_table | last).per_box_low) }} per box at volume.</li>
+</ul>
+
+<h2>Side by side</h2>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th scope="col"></th><th scope="col">Mailer box</th><th scope="col">Shipping box</th></tr></thead>
+    <tbody>
+      <tr><td>Opening</td><td>Lid lifts like a gift</td><td>Cut the tape, open the flaps</td></tr>
+      <tr><td>Tape needed</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Inside print</td><td>Popular</td><td>Rare</td></tr>
+      <tr><td>Heavy items</td><td>Up to about 2 kg (4–5 lb) in E-flute</td><td>Heavier, especially in B-flute</td></tr>
+      <tr><td>Cost</td><td>A little more</td><td>A little less</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Which should you choose?</h2>
+<p>If your customer opens the box themselves and you want them to remember it, choose a mailer box. If the box goes to a shop, a warehouse or holds something heavy, choose a shipping box. Many brands use both: mailers for online orders and shipping boxes for wholesale.</p>
+<p>See <a href="{{ link('product', slug='custom-mailer-boxes') }}">{{ t.mailer }}</a> and <a href="{{ link('product', slug='custom-shipping-boxes') }}">shipping boxes</a>.</p>
+{% endblock %}

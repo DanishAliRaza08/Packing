@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+
+{% block content %}
+<section class="hero" data-hero>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow" data-hero-item>Custom packaging for {{ niche.name }}</p>
+      <h1 data-hero-item>{{ niche.hero }}</h1>
+      <p class="lead" data-hero-item>Printed boxes from {{ site.min_units }} units. Design yours in 3D right now, get a free mockup in {{ site.mockup_hours }} hours, and work with one real person from first sketch to doorstep.</p>
+      <div class="hero-actions" data-hero-item>
+        <a class="btn btn-primary btn-lg" href="{{ link('quote') }}">Get a free quote</a>
+        <a class="btn btn-ghost btn-lg" href="{{ link('studio') }}">Design in 3D</a>
+      </div>
+      <p class="hero-note" data-hero-item>No payment until you approve your mockup · Prices in {{ pricing_cfg.markets[market].code }}</p>
+    </div>
+    <div class="hero-media" data-hero-item>
+      {{ ui.box3d(hero_design, scroll_open=true, size="box3d-hero") }}
+    </div>
+  </div>
+  <div class="container">{{ ui.trust_bar(trust) }}</div>
+</section>
+
+<section class="stats" aria-label="At a glance">
+  <div class="container stats-grid" data-reveal data-reveal-children>
+    <div><p class="stat"><span data-count="{{ site.min_units }}">{{ site.min_units }}</span></p><p>boxes minimum order</p></div>
+    <div><p class="stat"><span data-count="{{ site.mockup_hours }}">{{ site.mockup_hours }}</span>h</p><p>to your free 3D mockup</p></div>
+    <div><p class="stat"><span data-count="{{ design_count }}">{{ design_count }}</span></p><p>designs to explore in 3D</p></div>
+    <div><p class="stat"><span data-count="6">6</span></p><p>box styles, any size</p></div>
+  </div>
+</section>
+
+<section class="section studio-teaser" aria-labelledby="studio-title">
+  <div class="container">
+    <div class="section-head split-head" data-reveal>
+      <div>
+        <p class="eyebrow">3D Box Studio</p>
+        <h2 id="studio-title">Spin it, open it, make it yours</h2>
+        <p>Pick from {{ design_count }} designs. Change the {{ t.colours }}, pattern, finish and size, and add your brand name or logo. Then send it to us for an exact quote.</p>
+      </div>
+      <a class="btn btn-secondary" href="{{ link('studio') }}">Open the 3D studio</a>
+    </div>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee" data-marquee>
+      {% for d in strip %}{{ ui.design_card(d) }}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="box-styles" aria-labelledby="styles-title">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 id="styles-title">Box styles</h2>
+      <p>Every style is made to your size, printed in your {{ t.colours }}, and delivered with freight and duties included.</p>
+    </div>
+    <div class="card-grid" data-reveal data-reveal-children>
+      {% for p in products %}
+      {% set pd = product_designs[p.slug] %}
+      <a class="card product-card" href="{{ link('product', slug=p.slug) }}" data-thumb-wrap>
+        <span class="design-thumb"><img data-thumb="{{ pd.id }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="560" height="420" alt="3D render of {{ p.name | m }}"></span>
+        <div class="card-body">
+          <h3>{{ p.name | m }}</h3>
+          <p>{{ p.lead | m }}</p>
+          {% if p.slug in from_prices %}<p class="price-from">From {{ money(from_prices[p.slug]) }} per box</p>{% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="how-title">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 id="how-title">How it works</h2>
+      <p>Five steps, one named contact, and you see your box before you pay for production.</p>
+    </div>
+    <div class="steps-line" aria-hidden="true"><span></span></div>
+    <ol class="steps" data-reveal data-reveal-children>
+      {% for title, text in steps %}
+      <li><span class="step-num" aria-hidden="true">{{ loop.index }}</span><h3>{{ title }}</h3><p>{{ text | m }}</p></li>
+      {% endfor %}
+    </ol>
+    <p class="center"><a href="{{ link('how_it_works') }}">More about how it works →</a></p>
+  </div>
+</section>
+
+<section class="section alt" aria-labelledby="niches-title">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 id="niches-title">Packaging for your industry</h2>
+      <p>We know the sizes, inserts and finishes that work for each kind of product.</p>
+    </div>
+    <div class="card-grid niches" data-reveal data-reveal-children>
+      {% for n in niches %}
+      <a class="card niche-card" href="{{ link('niche', slug=n.slug) }}">
+        <div class="card-body">
+          <h3>{{ n.short }}</h3>
+          <p>{{ n.intro | truncate(120) }}</p>
+          <span class="card-link">{{ n.keyword | m }} →</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section honest" aria-labelledby="honest-title">
+  <div class="container split" data-reveal data-reveal-children>
+    <div>
+      <h2 id="honest-title">Honest about where your boxes are made</h2>
+      <p>We design your packaging and manage production from Pakistan, in vetted partner factories, with a US digital printer for small rush orders. Our partner in the US receives samples and checks quality before your run ships.</p>
+      <ul class="ticks">
+        <li>One named contact who replies within a few business hours</li>
+        <li>Photos of your actual boxes before they ship</li>
+        <li>Better prices from 250–1,000 boxes than self-serve platforms</li>
+        <li>Free custom sizing from {{ (site.free_custom_sizing_from | commas) }} boxes</li>
+      </ul>
+      <a class="btn btn-secondary" href="{{ link('about') }}">Meet the team</a>
+    </div>
+    {{ ui.photo("your team at work, or a factory visit", "Our team checking printed boxes") }}
+  </div>
+</section>
+
+<section class="section alt eco-band" aria-labelledby="eco-title">
+  <div class="container split reverse" data-reveal data-reveal-children>
+    <div class="design-thumb framed" data-thumb-wrap>
+      <img data-thumb="kraft-classic-mailer" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" width="560" height="420" alt="3D render of a recyclable kraft mailer box with a one-colour logo">
+    </div>
+    <div>
+      <h2 id="eco-title">Eco options as standard</h2>
+      <p>Recyclable {{ t.cardboard }}, water-based inks and plastic-free designs.
+        {% if market == 'uk' %}Every invoice lists the material and weight per box, so UK packaging EPR reporting is easy.{% else %}Several US states now have packaging laws, and recyclable boxes keep you ahead of them.{% endif %}</p>
+      <a class="btn btn-secondary" href="{{ link('eco') }}">Eco materials</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="reviews-title">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 id="reviews-title">What our clients say</h2>
+    </div>
+    <div class="card-grid testimonials" data-reveal data-reveal-children>
+      {% for i in range(3) %}
+      <figure class="card testimonial placeholder-note">
+        <blockquote><p>Placeholder: replace with a real client review (with their permission). Never invent reviews.</p></blockquote>
+        <figcaption>[Client name], [Brand]</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{{ ui.faq_block(faqs) }}
+<p class="center"><a href="{{ link('faq') }}">See all questions →</a></p>
+
+{{ ui.cta() }}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as ui with context %}
+
+{% block content %}
+<section class="page-hero compact">
+  <div class="container narrow">
+    <h1>{{ 'Recyclable, plastic-free postal boxes' if market == 'uk' else 'Eco-friendly mailer boxes and materials' }}</h1>
+    <p class="lead">Packaging your customers can put straight in the recycling bin, without giving up a premium look.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow prose">
+    <h2>What makes a box recyclable</h2>
+    <ul class="ticks">
+      <li><strong>Single material:</strong> corrugated board or card only, with no plastic windows or plastic lamination.</li>
+      <li><strong>Water-based inks:</strong> low-odour inks that don't stop the board being recycled.</li>
+      <li><strong>Paper tape and card inserts:</strong> instead of plastic tape and foam.</li>
+      <li><strong>Recycled content:</strong> ask for recycled-content board in your quote.</li>
+    </ul>
+    <p>Some finishes, like plastic lamination, foil and plastic windows, make recycling harder. We'll always tell you which options keep your box recyclable.</p>
+
+    <h2>Our materials</h2>
+    <ul>{% for key, label in materials %}<li>{{ label }}</li>{% endfor %}</ul>
+
+    {% if market == 'uk' %}
+    <h2>Making UK packaging EPR easy</h2>
+    <p>UK packaging Extended Producer Responsibility (EPR) applies to UK businesses above set thresholds (over £1 million turnover and more than 25 tonnes of packaging a year). Large producers pay fees that depend on how recyclable their packaging is.</p>
+    <p>To make reporting simple, every invoice lists the <strong>material type and weight per box</strong>. Recyclable, single-material boxes also help keep any fees down.</p>
+    <p><a href="{{ link('blog_post', slug='uk-packaging-epr-explained') }}">Read: UK packaging EPR explained for small businesses →</a></p>
+    {% else %}
+    <h2>US packaging laws</h2>
+    <p>A growing number of US states have Extended Producer Responsibility (EPR) laws for packaging, including corrugated boxes. Choosing recyclable, single-material boxes now keeps you ahead as rules roll out. We list the material and weight per box on every invoice.</p>
+    {% endif %}
+    <p class="note">This is general information, not legal advice. Check the current rules for your business.</p>
+  </div>
+</section>
+
+{{ ui.cta("Want a fully recyclable box?", "Tell us about your product and we'll suggest the greenest option that still protects it.") }}
+{% endblock %}

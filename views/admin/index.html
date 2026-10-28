@@ -1,0 +1,46 @@
+{% extends "admin/_layout.html" %}
+{% block content %}
+<div class="admin-top">
+  <h1>Requests</h1>
+  <a class="btn btn-secondary" href="{{ url_for('admin.export_csv', status=status or '', kind=kind or '') }}">Export CSV</a>
+</div>
+
+<nav class="chips" aria-label="Filter by status">
+  <a href="{{ url_for('admin.index', kind=kind or '') }}" {% if not status %}aria-current="true"{% endif %}>All</a>
+  {% for s in statuses %}
+  <a href="{{ url_for('admin.index', status=s, kind=kind or '') }}" {% if status == s %}aria-current="true"{% endif %}>{{ s }} ({{ (counts[s] or 0) }})</a>
+  {% endfor %}
+</nav>
+<nav class="chips" aria-label="Filter by type">
+  <a href="{{ url_for('admin.index', status=status or '') }}" {% if not kind %}aria-current="true"{% endif %}>All types</a>
+  {% for k in ['quote', 'sample', 'contact'] %}
+  <a href="{{ url_for('admin.index', status=status or '', kind=k) }}" {% if kind == k %}aria-current="true"{% endif %}>{{ k | capitalize }}</a>
+  {% endfor %}
+</nav>
+
+{% if quotes %}
+<div class="table-wrap">
+  <table class="admin-table">
+    <thead><tr><th>#</th><th>Date</th><th>Type</th><th>Site</th><th>Name</th><th>Company</th><th>Box</th><th>Qty</th><th>Estimate</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for q in quotes %}
+      <tr>
+        <td><a href="{{ url_for('admin.detail', quote_id=q.id) }}">{{ q.id }}</a></td>
+        <td>{{ q.created_at.slice(0, 10) }}</td>
+        <td>{{ q.kind }}</td>
+        <td>{{ q.market | upper }}</td>
+        <td><a href="{{ url_for('admin.detail', quote_id=q.id) }}">{{ q.name }}</a><br><span class="muted">{{ q.email }}</span></td>
+        <td>{{ q.company or '' }}</td>
+        <td>{{ q.style or '' }}</td>
+        <td>{{ q.quantity or '' }}</td>
+        <td>{% if q.estimate_low %}{{ q.currency }} {{ (q.estimate_low | fixed(0)) }}–{{ (q.estimate_high | fixed(0)) }}{% endif %}</td>
+        <td><span class="status status-{{ q.status | slugify }}">{{ q.status }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p>No requests yet.</p>
+{% endif %}
+{% endblock %}

@@ -1,6 +1,4 @@
-.venv/
-__pycache__/
-*.pyc
+node_modules/
 .env
-instance/
-.pytest_cache/
+data/
+*.zip
